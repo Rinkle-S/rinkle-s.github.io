@@ -1,40 +1,45 @@
 # Rinkle Sebastian — Portfolio
 
-A clean, responsive single-page portfolio website. No build step, no dependencies: just HTML, CSS, and a little JavaScript.
+A clean, colorful, single-page product portfolio. No build step, no dependencies: HTML, CSS, and a little JavaScript. Hosted free on GitHub Pages at **https://rinkle-s.github.io/**.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
 | `index.html` | Page structure and all content |
-| `styles.css` | Styling, layout, light/dark theme |
-| `script.js` | Theme toggle + footer year |
+| `styles.css` | Styling, layout, colors (teal + amber on off-white) |
+| `script.js` | Footer year + reveal-on-scroll animation |
+| `assets/` | Your photo goes here as `rinkle.png` |
 
-## Editing your content
+## Adding your photo (the one step left)
 
-All the text lives in `index.html`:
+The hero shows an "RS" monogram until you drop in a real photo:
 
-- **Hero**: name, role, and tagline
-- **About**: bio paragraphs
-- **Experience**: duplicate an `<article class="entry">` block per role
-- **Education**: same `entry` pattern
-- **Skills**: edit the grouped `<li>` items
-- **Contact**: email, LinkedIn, and GitHub links
+1. Take your headshot and **remove the background** with a free tool:
+   - https://www.remove.bg  (one click, free) or
+   - https://www.photoroom.com
+2. Save the result as **`rinkle.png`** inside the `assets/` folder.
+3. Commit and push (see below). It auto-appears in the circular gradient frame.
 
-## Preview locally
+> Tip: a head-and-shoulders crop with a transparent background looks best inside the circle.
 
-Just open `index.html` in a browser, or run a tiny server:
+## Editing content
 
-```bash
-python -m http.server 8000
-# then visit http://localhost:8000
+All text lives in `index.html`:
+
+- **Hero**: greeting, headline, sub, and the stat chips
+- **Projects**: three placeholder case-study cards (fill these in when ready)
+- **Experience** / **Education**: duplicate an `<article class="entry">` block per item
+- **Toolkit**: edit the `<li>` skill pills
+- **Contact**: email, LinkedIn, GitHub
+
+## Publishing changes
+
+```powershell
+cd ~/Desktop/rinkle-portfolio
+git add -A
+git commit -m "Update content"
+git push
 ```
 
-## Deploying (free, via GitHub Pages)
-
-This repo is set up to publish from the `main` branch root. In your repo:
-
-1. Go to **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-3. Choose branch **`main`** and folder **`/ (root)`**, then **Save**.
-4. Wait ~1 minute. Your site goes live at `https://rinkle-s.github.io/rinkle-portfolio/`.
+The site redeploys automatically in about a minute.

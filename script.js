@@ -1,19 +1,23 @@
 // Footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Theme toggle with localStorage persistence
-const toggle = document.getElementById("themeToggle");
-const root = document.documentElement;
+// Subtle reveal-on-scroll for sections
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = "1";
+        e.target.style.transform = "none";
+        observer.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
 
-const saved = localStorage.getItem("theme");
-if (saved) {
-  root.setAttribute("data-theme", saved);
-  toggle.textContent = saved === "light" ? "☀️" : "🌙";
-}
-
-toggle.addEventListener("click", () => {
-  const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-  root.setAttribute("data-theme", next);
-  toggle.textContent = next === "light" ? "☀️" : "🌙";
-  localStorage.setItem("theme", next);
+document.querySelectorAll(".section").forEach((s) => {
+  s.style.opacity = "0";
+  s.style.transform = "translateY(16px)";
+  s.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  observer.observe(s);
 });
