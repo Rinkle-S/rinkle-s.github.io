@@ -12,13 +12,14 @@ A clean, responsive single-page portfolio website. No build step, no dependencie
 
 ## Editing your content
 
-All the text lives in `index.html`. Look for the placeholder copy and replace it:
+All the text lives in `index.html`:
 
-- **Hero**: your role/title and tagline
-- **About**: short bio paragraph
-- **Projects**: duplicate a `<article class="card">` block per project
-- **Skills**: edit the `<li>` items
-- **Contact**: update the email and add your LinkedIn URL
+- **Hero**: name, role, and tagline
+- **About**: bio paragraphs
+- **Experience**: duplicate an `<article class="entry">` block per role
+- **Education**: same `entry` pattern
+- **Skills**: edit the grouped `<li>` items
+- **Contact**: email, LinkedIn, and GitHub links
 
 ## Preview locally
 
