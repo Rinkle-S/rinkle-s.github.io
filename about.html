@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Rinkle Sebastian</title>
+  <meta name="description" content="About Rinkle Sebastian — product manager, data scientist, and the things I do outside work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__brand">Rinkle<span>.</span></a>
+    <nav class="nav__links">
+      <a href="index.html#projects">Product Projects</a>
+      <a href="about.html" class="is-active">About Me</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="page-hero">
+      <div class="page-hero__text">
+        <p class="hero__eyebrow">About me</p>
+        <h1 class="hero__title">Product, data, and a few good detours.</h1>
+        <p class="hero__sub">
+          I'm a product manager who likes the messy middle: the bit between a vague customer
+          problem and a feature that's live and getting used.
+        </p>
+      </div>
+      <div class="hero__visual hero__visual--sm">
+        <div class="blob blob--1" aria-hidden="true"></div>
+        <div class="blob blob--2" aria-hidden="true"></div>
+        <div class="portrait">
+          <img src="assets/rinkle.png" alt="Rinkle Sebastian" class="portrait__img" onerror="this.style.display='none';this.parentNode.classList.add('portrait--fallback');" />
+          <span class="portrait__fallback" aria-hidden="true">RS</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section prose">
+      <h2 class="section__title">My story</h2>
+      <p>
+        I started in engineering and data science at <strong>IIT Madras</strong>, where an
+        integrated master's in Data Science taught me to let evidence lead the decision. That
+        instinct carried into product: today I'm a <strong>Client Engagement Manager at
+        Corridor Platforms</strong>, a decision-intelligence fintech for banks.
+      </p>
+      <p>
+        I own Tier-1 U.S. bank engagements end to end, coordinating releases across
+        engineering, QA, and design, scoping PRDs, running UAT, and shipping features that
+        customers adopt. I care about closing feedback loops and improving iteratively, which
+        is how my team lifted NPS from 6 to 8 and put a model-monitoring tool into production
+        that now tracks 380+ models.
+      </p>
+      <p>
+        Before Corridor, I worked across strategy and product at <strong>BCG</strong> and an
+        agri-fintech startup, <strong>GreyMatter</strong>, which taught me to be comfortable
+        with ambiguity, sharp prioritisation, and translating data into decisions leaders trust.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">What I value</h2>
+      <div class="grid grid--values">
+        <div class="value-card">
+          <span class="do-card__icon">🎯</span>
+          <h3>Evidence over opinion</h3>
+          <p>Decisions backed by user research and metrics, not the loudest voice in the room.</p>
+        </div>
+        <div class="value-card">
+          <span class="do-card__icon">🤝</span>
+          <h3>Trust through delivery</h3>
+          <p>Shipping reliably and closing the loop is how you earn a customer's confidence.</p>
+        </div>
+        <div class="value-card">
+          <span class="do-card__icon">♻️</span>
+          <h3>Iterate, then iterate</h3>
+          <p>Small, fast improvements compound faster than big, infrequent bets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Outside work</h2>
+      <p class="section__lead" style="max-width:640px">
+        When I'm off the clock you'll usually find me on a bike, around a board-game table,
+        or planning the next trip.
+      </p>
+      <div class="interests">
+        <span class="interest">🚴 Cycling</span>
+        <span class="interest">🎲 Board games</span>
+        <span class="interest">✈️ Travelling</span>
+      </div>
+    </section>
+
+    <section class="section section--contact">
+      <h2 class="section__title">Let's talk</h2>
+      <p class="contact__lead">Open to product roles and collaborations. Reach me here:</p>
+      <div class="contact__links">
+        <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--primary">Email me</a>
+        <a href="https://linkedin.com/in/rinkle-sebastian" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="resume.html" class="btn btn--ghost">Resume</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Rinkle Sebastian</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

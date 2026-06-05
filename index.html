@@ -12,12 +12,11 @@
 </head>
 <body>
   <header class="nav">
-    <a href="#top" class="nav__brand">Rinkle<span>.</span></a>
+    <a href="index.html" class="nav__brand">Rinkle<span>.</span></a>
     <nav class="nav__links">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html#projects">Product Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="resume.html">Resume</a>
     </nav>
   </header>
 
@@ -25,161 +24,154 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero__text">
-        <p class="hero__eyebrow">Hey, I'm Rinkle 👋</p>
+        <p class="hero__eyebrow">
+          Hi, I'm Rinkle
+          <svg class="wave" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <path fill="#f59e0b" d="M7.4 21.6c-2-.6-3.7-2-4.8-3.9-1-1.8-1.4-3.4-.7-4.2.5-.6 1.3-.5 2 .2l1.2 1.2c.2.2.5 0 .4-.3L3.8 9.2c-.3-.8.1-1.6.9-1.9.7-.2 1.4.1 1.8.8l1.7 3.3c.1.2.4.1.4-.1L7.7 5.8c-.2-.8.3-1.6 1.1-1.7.8-.2 1.5.3 1.7 1.1l1 4.6c0 .2.4.2.4 0l.3-3.9c0-.8.7-1.4 1.5-1.4.8.1 1.4.7 1.4 1.5l-.1 5.1c1.1-1 2.2-1.7 3.3-1.4 1 .3 1.4 1.2 1.1 2.6-.4 1.9-1 3.4-1.9 4.7-1.6 2.3-4 3.6-6.6 3.6-1.4 0-2.7-.3-3-.4Z"/>
+          </svg>
+        </p>
         <h1 class="hero__title">
           I turn <span class="hl hl--teal">customer needs</span> into
           <span class="hl hl--amber">shipped products</span>.
         </h1>
         <p class="hero__sub">
           Product manager at <strong>Corridor Platforms</strong>, a decision-intelligence
-          fintech for banks. I own Tier-1 U.S. bank engagements end to end, with a data
-          science background from <strong>IIT Madras</strong> and a bias for shipping.
+          fintech for banks. I own Tier-1 U.S. bank engagements end to end, backed by a
+          data science foundation from <strong>IIT Madras</strong> and a bias for shipping.
         </p>
-        <div class="hero__chips">
-          <span class="chip">📈 NPS 6 → 8</span>
-          <span class="chip">🛠️ 4 features to production</span>
-          <span class="chip">🏦 Tier-1 bank (Citi)</span>
-          <span class="chip">🎓 IIT Madras, Data Science</span>
-        </div>
         <div class="hero__cta">
-          <a href="#projects" class="btn btn--primary">View my work</a>
-          <a href="#contact" class="btn btn--ghost">Get in touch</a>
+          <a href="about.html" class="btn btn--primary">About me</a>
+          <a href="resume.html" class="btn btn--ghost">Resume</a>
         </div>
       </div>
       <div class="hero__visual">
         <div class="blob blob--1" aria-hidden="true"></div>
         <div class="blob blob--2" aria-hidden="true"></div>
         <div class="portrait">
-          <!-- Replace assets/rinkle.png with your background-removed photo -->
           <img src="assets/rinkle.png" alt="Rinkle Sebastian" class="portrait__img" onerror="this.style.display='none';this.parentNode.classList.add('portrait--fallback');" />
           <span class="portrait__fallback" aria-hidden="true">RS</span>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- About + What I do (condensed, Sam Dickie style) -->
+    <section class="section split">
+      <div class="split__intro">
+        <h2 class="section__title">A bit about me</h2>
+        <p>
+          I'm a product manager working at the intersection of <strong>strategy, data,
+          and delivery</strong>. At Corridor Platforms I own enterprise bank engagements
+          end to end: scoping PRDs, running UAT, closing feedback loops, and shipping
+          features people actually adopt.
+        </p>
+        <p>
+          My data science background means I'm as comfortable defining metrics and reading
+          the numbers as I am aligning stakeholders and writing the product story.
+        </p>
+        <a href="about.html" class="link-arrow">More about me &rarr;</a>
+      </div>
+      <div class="split__cards">
+        <div class="do-card">
+          <span class="do-card__icon">🔍</span>
+          <h3>Discover</h3>
+          <p>User research, problem definition, and metrics that tell me what to build and why.</p>
+        </div>
+        <div class="do-card">
+          <span class="do-card__icon">🧭</span>
+          <h3>Prioritise</h3>
+          <p>PRDs, roadmaps, and prioritisation frameworks that turn ideas into a clear plan.</p>
+        </div>
+        <div class="do-card">
+          <span class="do-card__icon">🚀</span>
+          <h3>Ship</h3>
+          <p>UAT, stakeholder alignment, and iterative releases that get to production.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Projects -->
     <section id="projects" class="section">
       <div class="section__head">
-        <h2 class="section__title">Projects</h2>
-        <p class="section__lead">Selected product work and case studies. (Coming soon.)</p>
+        <h2 class="section__title">Product Projects</h2>
+        <p class="section__lead">Selected product work and case studies. Deep dives coming soon.</p>
       </div>
-      <div class="grid">
-        <article class="card card--placeholder">
-          <div class="card__thumb">🚧</div>
-          <h3>Case Study One</h3>
-          <p>A deep dive into a product I shipped: the problem, what I learned from users, the call I made, and the metric that moved.</p>
-          <span class="card__soon">Coming soon</span>
+      <div class="grid grid--projects">
+        <article class="pcard">
+          <div class="pcard__media pcard__media--a">
+            <span class="pcard__tag">Fintech · B2B</span>
+          </div>
+          <div class="pcard__body">
+            <h3>Model Monitoring Tool</h3>
+            <p>A monitoring product shipped to a Tier-1 U.S. bank, now used to track 380+ models in production.</p>
+            <div class="pcard__meta"><span>Discovery → Delivery</span><span class="pcard__soon">Case study soon</span></div>
+          </div>
         </article>
-        <article class="card card--placeholder">
-          <div class="card__thumb">🚧</div>
-          <h3>Case Study Two</h3>
-          <p>Another walkthrough of discovery to delivery, with the tradeoffs and the outcome.</p>
-          <span class="card__soon">Coming soon</span>
+
+        <article class="pcard">
+          <div class="pcard__media pcard__media--b">
+            <span class="pcard__tag">Research · NPS</span>
+          </div>
+          <div class="pcard__body">
+            <h3>Closing the Feedback Loop</h3>
+            <p>How weekly client insight sessions and tighter UAT lifted NPS from 6 to 8 across releases.</p>
+            <div class="pcard__meta"><span>User Research</span><span class="pcard__soon">Case study soon</span></div>
+          </div>
         </article>
-        <article class="card card--placeholder">
-          <div class="card__thumb">🚧</div>
-          <h3>Case Study Three</h3>
-          <p>A short, focused story of a feature or initiative and its impact.</p>
-          <span class="card__soon">Coming soon</span>
+
+        <article class="pcard">
+          <div class="pcard__media pcard__media--c">
+            <span class="pcard__tag">GTM · Sandbox</span>
+          </div>
+          <div class="pcard__body">
+            <h3>Sandbox to Pilot</h3>
+            <p>Demos and product tours that turned a prospect into an active pilot engagement.</p>
+            <div class="pcard__meta"><span>Go-to-market</span><span class="pcard__soon">Case study soon</span></div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="pcard__media pcard__media--d">
+            <span class="pcard__tag">Data · Strategy</span>
+          </div>
+          <div class="pcard__body">
+            <h3>Dashboard Migration at Scale</h3>
+            <p>Schemas for 450+ reports and a prioritisation framework that sequenced a Phase 1 rollout.</p>
+            <div class="pcard__meta"><span>BCG</span><span class="pcard__soon">Case study soon</span></div>
+          </div>
         </article>
       </div>
     </section>
 
-    <!-- Experience -->
+    <!-- Experience (condensed; full detail on Resume) -->
     <section id="experience" class="section">
       <div class="section__head">
-        <h2 class="section__title">Experience</h2>
+        <h2 class="section__title">Where I've worked</h2>
+        <p class="section__lead">A quick snapshot. The <a href="resume.html" class="inline-link">full resume</a> has the details.</p>
       </div>
-      <div class="timeline">
-
-        <article class="entry">
-          <div class="entry__head">
+      <div class="exp-list">
+        <div class="exp-row">
+          <div class="exp-row__role">
             <h3>Client Engagement Manager</h3>
-            <span class="entry__date">Jun 2024 – Present</span>
+            <p>Corridor Platforms</p>
           </div>
-          <p class="entry__org">Corridor Platforms · Bengaluru, India</p>
-          <p class="entry__note">A decision-intelligence fintech for banks, founded by ex-AmEx executives.</p>
-          <ul class="entry__points">
-            <li>Own Tier-1 U.S. bank (Citi) engagements, coordinating 10+ releases across engineering, QA, and design.</li>
-            <li>Raised NPS from 6 to 8 by closing user feedback loops and driving data-driven, iterative improvements.</li>
-            <li>Scoped 8 PRDs and shipped 4 to production, including a monitoring tool now used to track 380+ models.</li>
-            <li>Instituted weekly client insight sessions and led UAT, surfacing 20+ critical issues pre-release.</li>
-            <li>Built 9 demos and 15+ product tours, leading sandbox engagements that converted a prospect into an active pilot.</li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry__head">
+          <span class="exp-row__date">Jun 2024 – Present</span>
+        </div>
+        <div class="exp-row">
+          <div class="exp-row__role">
             <h3>Associate Intern</h3>
-            <span class="entry__date">May 2023 – Jul 2023</span>
+            <p>Boston Consulting Group (BCG)</p>
           </div>
-          <p class="entry__org">Boston Consulting Group (BCG) · Chennai, India</p>
-          <p class="entry__note">Global strategy consulting firm partnering with leaders on their most critical challenges.</p>
-          <ul class="entry__points">
-            <li>Coordinated 28 analysts across 10 insurance verticals to validate KPIs for legacy-to-Tableau migrations.</li>
-            <li>Built scalable schemas for 450+ reports capturing cross-functional dependencies, enabling parallel onboarding.</li>
-            <li>Created a prioritisation framework sequencing 200+ executive reports for a structured Phase 1 rollout.</li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3>Financial Analyst (Product &amp; Strategy)</h3>
-            <span class="entry__date">Jan 2022 – Jun 2022</span>
+          <span class="exp-row__date">2023</span>
+        </div>
+        <div class="exp-row">
+          <div class="exp-row__role">
+            <h3>Financial Analyst, Product &amp; Strategy</h3>
+            <p>GreyMatter Technologies</p>
           </div>
-          <p class="entry__org">GreyMatter Technologies · Remote, India</p>
-          <p class="entry__note">Agri-fintech backed by IIMA Ventures, providing input credit for farmers.</p>
-          <ul class="entry__points">
-            <li>Profiled 30+ investors and sourced funding opportunities, feeding the early-stage investment pipeline.</li>
-            <li>Automated loan amortisation for ~200 farmer credit accounts, cutting processing time by 70%.</li>
-            <li>Built an Excel dashboard tracking 5 portfolio KPIs, used by leadership for weekly credit decisions.</li>
-          </ul>
-        </article>
-
+          <span class="exp-row__date">2022</span>
+        </div>
       </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education" class="section">
-      <div class="section__head">
-        <h2 class="section__title">Education</h2>
-      </div>
-      <div class="timeline">
-        <article class="entry entry--edu">
-          <div class="entry__head">
-            <h3>Integrated M.Tech, Data Science</h3>
-            <span class="entry__date">Jul 2023 – May 2024</span>
-          </div>
-          <p class="entry__org">Indian Institute of Technology (IIT), Madras · GPA 8.9/10</p>
-        </article>
-        <article class="entry entry--edu">
-          <div class="entry__head">
-            <h3>B.Tech, Naval Architecture &amp; Ocean Engineering</h3>
-            <span class="entry__date">Jul 2019 – May 2023</span>
-          </div>
-          <p class="entry__org">Indian Institute of Technology (IIT), Madras · GPA 8.9/10</p>
-          <p class="entry__note">Exchange semester in Data Science at KTH Royal Institute of Technology, Sweden.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Skills strip -->
-    <section class="section skills-strip">
-      <h2 class="section__title">Toolkit</h2>
-      <ul class="skills">
-        <li>User Research</li>
-        <li>PRD Writing</li>
-        <li>Metrics Definition</li>
-        <li>Feature Prioritisation</li>
-        <li>Stakeholder Alignment</li>
-        <li>A/B Testing</li>
-        <li>Figma</li>
-        <li>Jira</li>
-        <li>Linear</li>
-        <li>Amplitude</li>
-        <li>Python</li>
-        <li>SQL</li>
-      </ul>
+      <a href="resume.html" class="btn btn--ghost" style="margin-top:1.5rem">View full resume</a>
     </section>
 
     <!-- Contact -->
