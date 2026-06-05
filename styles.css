@@ -247,7 +247,18 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem)
 }
 .prose { max-width: 720px; }
 .prose p { color: var(--muted); margin-top: 1rem; font-size: 1.02rem; }
-.interests { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+.interests-label {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+}
+.interests { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.9rem; }
+.interest--game {
+  border-color: color-mix(in srgb, var(--amber) 45%, var(--border));
+  background: color-mix(in srgb, var(--amber) 10%, var(--surface));
+}
 .interest {
   display: inline-flex; align-items: center; gap: 0.55rem;
   background: var(--surface); border: 1px solid var(--border);
