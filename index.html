@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rinkle Sebastian | Portfolio</title>
+  <meta name="description" content="Portfolio of Rinkle Sebastian." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="nav__brand">RS</a>
+    <nav class="nav__links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav__theme" id="themeToggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero__eyebrow">Hello, I'm</p>
+      <h1 class="hero__name">Rinkle Sebastian</h1>
+      <p class="hero__role">Your Role / Title Goes Here</p>
+      <p class="hero__tagline">
+        A short one-line tagline about what you do and the value you bring.
+        Edit this in <code>index.html</code>.
+      </p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">View Work</a>
+        <a href="#contact" class="btn btn--ghost">Get in Touch</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2 class="section__title">About</h2>
+      <div class="about">
+        <div class="about__avatar" aria-hidden="true">RS</div>
+        <div class="about__text">
+          <p>
+            Write a short paragraph about yourself here: your background, what you're
+            passionate about, and what you're currently working on or looking for.
+          </p>
+          <p>
+            Keep it to two or three sentences. Replace this placeholder text in
+            <code>index.html</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2 class="section__title">Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="card__thumb">01</div>
+          <h3>Project One</h3>
+          <p>Short description of what this project does and your role in it.</p>
+          <div class="card__tags"><span>Tag</span><span>Tag</span></div>
+          <div class="card__links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__thumb">02</div>
+          <h3>Project Two</h3>
+          <p>Short description of what this project does and your role in it.</p>
+          <div class="card__tags"><span>Tag</span><span>Tag</span></div>
+          <div class="card__links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__thumb">03</div>
+          <h3>Project Three</h3>
+          <p>Short description of what this project does and your role in it.</p>
+          <div class="card__tags"><span>Tag</span><span>Tag</span></div>
+          <div class="card__links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2 class="section__title">Skills</h2>
+      <ul class="skills">
+        <li>Skill One</li>
+        <li>Skill Two</li>
+        <li>Skill Three</li>
+        <li>Skill Four</li>
+        <li>Skill Five</li>
+        <li>Skill Six</li>
+        <li>Skill Seven</li>
+        <li>Skill Eight</li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section--contact">
+      <h2 class="section__title">Get in Touch</h2>
+      <p class="contact__lead">
+        Open to opportunities and collaborations. The best way to reach me:
+      </p>
+      <div class="contact__links">
+        <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--primary">Email Me</a>
+        <a href="https://github.com/Rinkle-S" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Rinkle Sebastian. Built with HTML &amp; CSS.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
