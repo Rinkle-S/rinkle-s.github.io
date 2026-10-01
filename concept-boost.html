@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept Boost | Rinkle Sebastian</title>
+  <meta name="description" content="Product case study: a Duolingo feature that turns repeated grammar mistakes into one concept to learn. Research, prioritisation, PRD and a clickable prototype." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__brand">Rinkle<span>.</span></a>
+    <nav class="nav__links">
+      <a href="index.html#projects" class="is-active">Product Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </header>
+
+  <main id="top" class="cs">
+    <!-- Intro -->
+    <section class="cs-hero">
+      <a class="cs-back" href="index.html#projects">&larr; All projects</a>
+      <p class="cs-eyebrow">Product case study &middot; Edtech &middot; Consumer</p>
+      <h1 class="hero__title">Concept <span class="hl hl--teal">Boost</span></h1>
+      <p class="hero__sub">A Duolingo feature that turns a learner's repeated grammar mistakes into one concept to learn, practise and revisit.</p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product, solo</dd></div>
+        <div><dt>Context</dt><dd>HelloPM AI-PM course, Assignment 1</dd></div>
+        <div><dt>Built with</dt><dd>Lovable</dd></div>
+        <div><dt>Stage</dt><dd>Concept, PRD, prototype</dd></div>
+      </dl>
+      <div class="hero__cta">
+        <a href="#prototype" class="btn btn--primary">Try the prototype</a>
+        <a href="#story" class="btn btn--ghost">Read the story</a>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="cs-block cs-block--tight">
+      <div class="cs-brief">
+        <div class="cs-card"><h3>The problem</h3><p>Serious learners slide into streak-only sessions because grammar is taught one sentence at a time. Duolingo still counts them as healthy daily users.</p></div>
+        <div class="cs-card"><h3>The bet</h3><p>Track the grammar concept a learner keeps missing, put one short checkpoint in their path, and check later that it stuck.</p></div>
+        <div class="cs-card"><h3>How it would be judged</h3><p>Fewer repeat mistakes on a boosted concept after 2 weeks, against a matched group that got no boost.</p></div>
+      </div>
+      <p class="cs-note">This is a course project. I researched and designed it, and it has not been built or tested by Duolingo.</p>
+    </section>
+
+    <!-- Prototype -->
+    <section class="cs-block" id="prototype">
+      <div class="cs-stage">
+        <div class="cs-stage__text">
+          <p class="cs-eyebrow">Clickable prototype</p>
+          <h2 class="section__title">One flow, start to finish</h2>
+          <p class="cs-lead">The prototype covers the path from a repeated mistake to a confirmed concept. Click through it on the phone.</p>
+          <ol class="cs-steps">
+            <li><span class="cs-n">1</span><div><b>Lesson complete</b><span>A card names the repeated mistake and where it happened.</span></div></li>
+            <li><span class="cs-n">2</span><div><b>Learning path</b><span>A Concept Boost node appears at the learner's current spot.</span></div></li>
+            <li><span class="cs-n">3</span><div><b>Learn</b><span>One line and two contrasting examples, shown with no tap needed.</span></div></li>
+            <li><span class="cs-n">4</span><div><b>Practice</b><span>A typed drill on sentences the learner has not seen.</span></div></li>
+            <li><span class="cs-n">5</span><div><b>Concept Boosted</b><span>Bonus XP and a review booked for about 3 days later.</span></div></li>
+            <li><span class="cs-n">6</span><div><b>Grammar tab</b><span>Each concept shows Still Weak, Practicing or Strong.</span></div></li>
+          </ol>
+          <p class="cs-note">The embedded view is small. <a href="https://duolingo-korean-boost.lovable.app/" target="_blank" rel="noopener" class="inline-link">Open the prototype in a new tab</a> for the full screen.</p>
+        </div>
+        <div class="cs-phone">
+          <iframe src="https://duolingo-korean-boost.lovable.app/" title="Concept Boost clickable prototype" loading="lazy" allow="clipboard-write"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div id="story"></div>
+
+    <!-- Phase 1 -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">Phase 1 &middot; Understand the product</p>
+      <h2 class="section__title">What Duolingo is good at, and where it stops</h2>
+      <div class="cs-prose">
+        <p>I used Duolingo daily and tried nine flows, from daily lessons to reviewing mistakes. Short lessons, streaks and leaderboards make it easy to come back every day. That is why it keeps people better than Babbel or Busuu.</p>
+        <p>About 80% of its revenue comes from subscriptions, so the learners most likely to pay are the ones who want to get good at a language. For them, the gaps showed up quickly.</p>
+      </div>
+      <div class="cs-table"><table>
+        <thead><tr><th>Competitor</th><th>Does better</th><th>Does worse</th></tr></thead>
+        <tbody>
+          <tr><td>Babbel</td><td>Linguist-designed lessons, explicit grammar</td><td>Paid only, weaker habit, feels like a classroom</td></tr>
+          <tr><td>Busuu</td><td>Grammar explanations, native-speaker corrections</td><td>Slow feedback, no habit loop</td></tr>
+          <tr><td>ChatGPT, YouTube</td><td>Answers any doubt on demand, tailored practice</td><td>No structure, no streak, can be wrong</td></tr>
+        </tbody>
+      </table></div>
+      <div class="cs-prose">
+        <p>I listed eleven user problems. Nine belonged to serious learners, and most were about missing explanations and feedback. My goal: <strong>help serious language learners understand and improve through better explanations, doubt resolution and actionable feedback.</strong></p>
+      </div>
+    </section>
+
+    <!-- Phase 2 -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">Phase 2 &middot; Research</p>
+      <h2 class="section__title">Five interviews, thirty survey answers</h2>
+      <div class="cs-prose">
+        <p>I used interviews to understand why learners behave the way they do, and a survey to check how common it is. People in the survey placed themselves into Active or Maintenance-mode. I report every number against its own group, not against all 30.</p>
+      </div>
+      <div class="cs-table"><table>
+        <thead><tr><th>Segment</th><th class="num">Survey</th><th>Who they are</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>Maintenance-mode serious learners (primary)</td><td class="num">9 of 30</td><td>Started to learn for real, now only keep the streak alive</td></tr>
+          <tr><td>Active serious learners (comparison)</td><td class="num">11 of 30</td><td>Still learning properly, the group the fix should protect</td></tr>
+          <tr><td>Casual learners</td><td class="num">Out of scope</td><td>Curiosity, low commitment</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="cs-h3">What came up</h3>
+      <ul class="cs-list">
+        <li><strong>Grammar is the top confusion.</strong> 11 of 20 serious respondents named it, including 7 of 11 who are still active. All five interviewees raised it.</li>
+        <li><strong>Help exists but goes unused.</strong> Explain My Answer is free for major languages. No interviewee used it. One tapped past it to keep going. Another skipped it, memorised the answer and moved on.</li>
+        <li><strong>Learners beat the format.</strong> 15 of 20 used an outside resource in the last 3 months, and 7 of 20 used ChatGPT or another AI.</li>
+        <li><strong>The streak replaces learning.</strong> 7 of 9 maintenance-mode respondents said most recent sessions were for the streak, against 2 of 11 active ones.</li>
+      </ul>
+      <blockquote class="cs-quote">
+        <p>"I can often tell two options are wrong and the third is the obvious correct one, without necessarily understanding the full meaning. It becomes a pattern-matching game."</p>
+        <cite>Interviewee, learning Japanese</cite>
+      </blockquote>
+      <blockquote class="cs-quote">
+        <p>"The original intent, learning something new, got replaced by streak psychology, which I only recognised after the fact."</p>
+        <cite>Interviewee, learning German</cite>
+      </blockquote>
+      <div class="cs-prose">
+        <p>One interviewee kept a streak alive for 3.5 years while her learning had effectively stopped. That case changed how I defined the segment. A streak can stay perfect while the learning is gone.</p>
+      </div>
+
+      <h3 class="cs-h3">The P0 problem</h3>
+      <div class="cs-p0">
+        <p>Maintenance-mode serious learners meet grammar one sentence at a time. Nothing connects the pattern across lessons, so they keep getting marked correct without understanding why.</p>
+        <p>They guess through exercises, take their confusion to ChatGPT and YouTube, and shrink sessions to the shortest lesson that protects the streak. Duolingo keeps the streak and loses the learning, while the data still shows a healthy daily user.</p>
+      </div>
+    </section>
+
+    <!-- Phase 3: ideas -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">Phase 3 &middot; Find the answer</p>
+      <h2 class="section__title">Why it happens, and what I considered</h2>
+      <ol class="cs-list cs-list--num">
+        <li>Lessons are self-contained. The Unit Guidebook is thin, covers one unit, and sits behind a small icon.</li>
+        <li>Nothing connects a concept across lessons. Explain My Answer covers one sentence at a time.</li>
+        <li>Exercises can be passed by guessing or elimination.</li>
+        <li>There is no cumulative place to review grammar across units.</li>
+        <li>The streak treats every completed lesson as equal, so the shortest, most familiar lesson always wins.</li>
+      </ol>
+      <div class="cs-prose">
+        <p>I wrote 11 ideas, each tied to the causes it attacks, the one assumption it depends on, and a confidence label. I scored them with RICE, each factor from 1 to 3.</p>
+      </div>
+      <div class="cs-table"><table>
+        <thead><tr><th>Idea</th><th class="num">R</th><th class="num">I</th><th class="num">C</th><th class="num">E</th><th class="num">Score</th><th>Decision</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>Mistake analyser with a checkpoint in the path</td><td class="num">3</td><td class="num">3</td><td class="num">3</td><td class="num">2</td><td class="num">13.5</td><td>Selected</td></tr>
+          <tr><td>Explain My Answer opens on its own</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">12</td><td>Folded in</td></tr>
+          <tr><td>Bonus XP for engaging with an explanation</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">12</td><td>Bundled in</td></tr>
+          <tr><td>Phase out word banks</td><td class="num">2</td><td class="num">3</td><td class="num">3</td><td class="num">3</td><td class="num">6</td><td>Partly used</td></tr>
+          <tr><td>Interactive grammar tables</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td>Dropped</td></tr>
+          <tr><td>Duo Chat with concept-level correction</td><td class="num">2</td><td class="num">3</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td>Dropped</td></tr>
+          <tr><td>Streak needs new content weekly</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">2</td><td class="num">3</td><td>Dropped</td></tr>
+          <tr><td>Grammar Sandbox</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td>Dropped</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cs-note">Showing 8 of 11. Three more low scorers were dropped: a cumulative grammar reference, split streak counters, and contrastive explanations.</p>
+      <div class="cs-prose">
+        <p>Two ideas scored close to the top only because dividing by low effort rewards cheap ideas. Neither closes the problem alone. Idea 6 is the only one that connects mistakes across sessions, so I used it as the base and folded in the behaviour of the next two. I treated the score as an input, not the answer.</p>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">The solution</p>
+      <h2 class="section__title">How Concept Boost works</h2>
+      <div class="cs-prose">
+        <p>It records which grammar concept each wrong answer belongs to. When the same concept is missed three times in a rolling window, a checkpoint appears in the learner's path. It does three things a plain correction cannot.</p>
+      </div>
+      <div class="cs-brief">
+        <div class="cs-card"><h3>Names it</h3><p>"You've missed this particle three times this week." Three scattered mistakes become one thing to fix.</p></div>
+        <div class="cs-card"><h3>Teaches and tests it</h3><p>A one-line explanation with two examples, then a typed drill on unseen sentences. A wrong answer gets a different sentence, not the same one again.</p></div>
+        <div class="cs-card"><h3>Checks it stuck</h3><p>Bonus XP, an automatic review about 3 days later, and a Grammar tab showing every concept as Still Weak, Practicing or Strong.</p></div>
+      </div>
+      <h3 class="cs-h3">Decisions I made on purpose</h3>
+      <ul class="cs-list">
+        <li><strong>Typed drill, not word bank.</strong> If a learner can pass by elimination, a correct answer proves nothing. The drill asks for the word plus its particle, not a full sentence, because one interviewee finds full sentences hard.</li>
+        <li><strong>Two retries, then move on.</strong> After that the concept is restated plainly. The boost teaches, it never blocks the path.</li>
+        <li><strong>No AI-written explanations in v1.</strong> A wrong grammar explanation costs more trust than none.</li>
+        <li><strong>Not building:</strong> a chat tutor (overlaps Duolingo Max), a browsable grammar library (passive, so this group would not open it), or any change to the streak.</li>
+      </ul>
+      <div class="cs-prose">
+        <p>The PRD also covers five user stories with acceptance criteria, twelve edge cases and empty states, an event tracking sheet, dependencies, a timeline, and open questions.</p>
+      </div>
+    </section>
+
+    <!-- Metrics & risk -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">Success and risk</p>
+      <h2 class="section__title">How I would know it worked</h2>
+      <div class="cs-table"><table>
+        <thead><tr><th>Type</th><th>Metric</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Key</td><td>Repeat mistake rate on a boosted concept within 2 weeks, against a matched group with no boost</td><td>Tests whether the concept was learned, not whether the feature was used</td></tr>
+          <tr><td>Secondary</td><td>Boost adoption rate, then drill completion rate</td><td>Shows where people drop out before the key metric can move</td></tr>
+          <tr><td>Diagnostic</td><td>First-attempt drill accuracy next to time on the explanation screen</td><td>Separates "did not read it" from "read it and it did not teach"</td></tr>
+          <tr><td>Guardrail</td><td>Lesson activity against each learner's own earlier baseline, drill abandonment, streak continuation</td><td>These learners already do the minimum. If the boost makes them do less, it failed</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="cs-h3">What could go wrong</h3>
+      <div class="cs-table"><table>
+        <thead><tr><th>Assumption</th><th>Signal to watch</th><th>What I would do</th></tr></thead>
+        <tbody>
+          <tr><td>Putting it in the path gets real engagement, not just a glance</td><td>First-attempt accuracy, read with explanation time</td><td>Shorten the explanation to what people actually read. A gate can force a tap, not reading</td></tr>
+          <tr><td>The detector tells a real pattern from a typo</td><td>Exit rate on the boost intro screen</td><td>Launch on unambiguous concepts only, and hand-check the first 50 flags</td></tr>
+          <tr><td>Typed retries force real application without making people quit</td><td>Exit rate after the first wrong answer</td><td>Cap retries at 2 and tune from prototype data</td></tr>
+          <tr><td>Bonus XP can push comprehension, not just completion</td><td>Repeat mistakes with and without the bonus</td><td>Ship it as a holdout. Drop it if the groups do not differ</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- Reflection -->
+    <section class="cs-block">
+      <p class="cs-eyebrow">Reflection</p>
+      <h2 class="section__title">What I took from this</h2>
+      <ul class="cs-list">
+        <li>Usage data can look healthy while learning has stopped. The most useful finding came from one interview, not from a dashboard.</li>
+        <li>A score is a starting point. The highest RICE ideas were cheap, not complete, so I checked each one against the cause it was meant to fix.</li>
+        <li>A feature that learners skip needs a different design, not a better label. That moved the solution from "make help available" to "put it in the path and test it".</li>
+        <li>Open questions remain, including the right retry cap, whether the XP bonus should ship, and whether naming a repeated mistake could discourage some learners. A prototype test with real maintenance-mode learners is the next step.</li>
+      </ul>
+      <p class="cs-note">Interview participants are anonymised in this write-up.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section--contact">
+      <h2 class="section__title">Let's talk</h2>
+      <p class="contact__lead">Open to product roles and collaborations. Reach me here:</p>
+      <div class="contact__links">
+        <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--primary">Email me</a>
+        <a href="https://linkedin.com/in/rinkle-sebastian" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Rinkle-S" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Rinkle Sebastian</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

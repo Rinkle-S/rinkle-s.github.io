@@ -307,3 +307,67 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem)
 @media (prefers-reduced-motion: reduce) {
   .blob--1, .blob--2, .wave { animation: none; }
 }
+
+/* ===== Case study pages ===== */
+.cs { max-width: 800px; }
+.cs-hero { padding: 2.5rem 0 1.5rem; }
+.cs-back { display: inline-block; margin-bottom: 1.5rem; color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+.cs-back:hover { color: var(--teal); }
+.cs-eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); font-weight: 600; margin-bottom: 0.6rem; }
+.cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem 1.5rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.cs-meta dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.cs-meta dd { margin-top: 0.15rem; font-weight: 600; font-size: 0.95rem; }
+.cs-block { padding: 3rem 0; border-top: 1px solid var(--border); }
+.cs-block--tight { border-top: 0; padding-top: 1.5rem; }
+.cs-prose p { color: var(--muted); margin-top: 1rem; max-width: 680px; }
+.cs-lead { color: var(--muted); margin-top: 0.9rem; }
+.cs-h3 { font-size: 1.1rem; margin: 2rem 0 0.6rem; }
+.cs-note { color: var(--muted); font-size: 0.88rem; margin-top: 1rem; }
+.cs-brief { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.cs-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.3rem; }
+.cs-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+.cs-card p { color: var(--muted); font-size: 0.92rem; }
+.cs-table { overflow-x: auto; margin: 1.5rem 0 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.cs-table table { border-collapse: collapse; width: 100%; min-width: 540px; font-size: 0.9rem; }
+.cs-table th, .cs-table td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted); }
+.cs-table td:first-child { color: var(--text); }
+.cs-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); background: var(--surface-2); }
+.cs-table tr:last-child td { border-bottom: 0; }
+.cs-table .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cs-table tr.pick td { background: color-mix(in srgb, var(--teal) 12%, transparent); color: var(--text); font-weight: 600; }
+.cs-list { margin: 1.25rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+.cs-list li { margin-bottom: 0.7rem; padding-left: 0.2rem; }
+.cs-list li::marker { color: var(--teal); }
+.cs-quote { margin: 1.5rem 0; padding-left: 1.2rem; border-left: 3px solid var(--teal); }
+.cs-quote p { font-size: 1.05rem; color: var(--text); }
+.cs-quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.85rem; color: var(--muted); }
+.cs-p0 { margin-top: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.3rem 1.5rem; }
+.cs-p0 p { color: var(--muted); }
+.cs-p0 p + p { margin-top: 0.9rem; }
+
+/* Prototype stage */
+.cs-stage { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2.5rem; align-items: center; }
+.cs-steps { list-style: none; margin-top: 1.4rem; display: grid; gap: 0.9rem; }
+.cs-steps li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.7rem; }
+.cs-n { font-family: "Sora", sans-serif; font-weight: 700; color: var(--teal); }
+.cs-steps b { display: block; font-size: 0.95rem; }
+.cs-steps span:not(.cs-n) { color: var(--muted); font-size: 0.9rem; }
+.cs-phone {
+  width: min(340px, 100%); height: 680px; max-height: 80vh;
+  border: 9px solid var(--surface-2); border-radius: 36px; background: #fff;
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.cs-phone iframe { width: 100%; height: 100%; border: 0; display: block; }
+@media (max-width: 760px) {
+  .cs-stage { grid-template-columns: 1fr; justify-items: center; }
+  .cs-stage__text { justify-self: stretch; }
+}
+
+/* Linked project card */
+.pcard--link { display: block; text-decoration: none; color: inherit; }
+.pcard__media--e { background: linear-gradient(135deg, #0d9488, #1e3a8a); }
+.pcard__live {
+  color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 15%, transparent);
+  padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600;
+}
