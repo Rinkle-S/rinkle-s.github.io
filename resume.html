@@ -4,53 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Rinkle Sebastian</title>
-  <meta name="description" content="Resume of Rinkle Sebastian — Product Manager at Corridor Platforms, IIT Madras." />
+  <meta name="description" content="Resume of Rinkle Sebastian: Associate Product Manager at Corridor Platforms, IIT Madras Data Science." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=optional" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#fbf8f3" />
+  <script>
+    document.documentElement.classList.add("js");
+    try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+  </script>
 </head>
 <body>
-  <header class="nav">
-    <a href="index.html" class="nav__brand">Rinkle<span>.</span></a>
-    <nav class="nav__links">
-      <a href="index.html#projects">Product Projects</a>
-      <a href="about.html">About Me</a>
-      <a href="resume.html" class="is-active">Resume</a>
-    </nav>
+  <div class="masthead-strip">
+    <span>Portfolio &middot; Vol. 01</span>
+  </div>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand"><span class="nav__brand-name">Rinkle Sebastian</span></a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="resume.html" class="is-active" aria-current="page">Resume</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="nav__social nav__social--mail" href="mailto:rinklesebastian12@gmail.com" aria-label="Email me" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5" width="18.4" height="14" rx="2.6"/><path d="M4 7.4l8 5.7 8-5.7"/></svg>
+        </a>
+        <a class="nav__social nav__social--github" href="https://github.com/Rinkle-S" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.97-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.15 0 1.55-.01 2.81-.01 3.19 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a class="nav__social nav__social--linkedin" href="https://linkedin.com/in/rinkle-sebastian" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+        </a>
+        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z"/></svg>
+        </button>
+        <button class="icon-btn nav__burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main id="top" class="resume">
+  <main id="top" class="wrap resume">
     <div class="resume__topbar">
       <div>
         <h1 class="resume__name">Rinkle Sebastian</h1>
-        <p class="resume__role">Product Manager · Client Engagement Manager</p>
+        <p class="resume__role">Associate Product Manager · Corridor Platforms</p>
         <p class="resume__contact">
           <a href="mailto:rinklesebastian12@gmail.com">rinklesebastian12@gmail.com</a> ·
-          <a href="https://linkedin.com/in/rinkle-sebastian" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://linkedin.com/in/rinkle-sebastian" target="_blank" rel="noopener">LinkedIn</a> ·
+          Bengaluru, India
         </p>
       </div>
       <a href="assets/Rinkle_Sebastian_Resume.pdf" download class="btn btn--primary resume__download">
-        ⬇ Download PDF
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>
+        Download PDF
       </a>
     </div>
 
     <!-- Experience -->
-    <section class="resume__section">
+    <section class="resume__section reveal">
       <h2 class="resume__heading">Experience</h2>
 
       <article class="resume__entry">
         <div class="resume__entry-head">
-          <h3>Client Engagement Manager</h3>
-          <span class="resume__date">Jun 2024 – Present</span>
+          <h3>Associate Product Manager</h3>
+          <span class="resume__date">Jun 2024 - Present</span>
         </div>
         <p class="resume__org">Corridor Platforms · Bengaluru, India</p>
         <p class="resume__note">A decision-intelligence fintech for banks, founded by ex-AmEx executives.</p>
         <ul>
-          <li>Own Tier-1 U.S. bank (Citi) engagements, coordinating 10+ releases across engineering, QA, and design.</li>
-          <li>Raised NPS from 6 to 8 by closing user feedback loops and driving data-driven, iterative improvements.</li>
-          <li>Scoped 8 PRDs and shipped 4 to production, including a monitoring tool now used to track 380+ models.</li>
-          <li>Instituted weekly client insight sessions and led UAT across releases, surfacing 20+ critical issues pre-release.</li>
+          <li>Own Tier-1 U.S. bank (Citi) engagements, coordinating 10+ releases across engineering, QA and design.</li>
+          <li>Increased NPS from 6 to 8 by closing user feedback loops and driving data-driven, iterative product improvements.</li>
+          <li>Scoped 8 PRDs and shipped 4 to production, including a monitoring tool adopted by users to track 380+ models.</li>
+          <li>Instituted weekly user insight sessions and led UAT across key releases, catching 20+ critical issues pre-release.</li>
           <li>Built 9 demos and 15+ product tours, leading sandbox engagements that converted a prospect into an active pilot.</li>
         </ul>
       </article>
@@ -58,71 +89,185 @@
       <article class="resume__entry">
         <div class="resume__entry-head">
           <h3>Associate Intern</h3>
-          <span class="resume__date">May 2023 – Jul 2023</span>
+          <span class="resume__date">May 2023 - Jul 2023</span>
         </div>
         <p class="resume__org">Boston Consulting Group (BCG) · Chennai, India</p>
         <p class="resume__note">Global strategy consulting firm partnering with leaders on their most critical challenges.</p>
         <ul>
-          <li>Coordinated 28 analysts across 10 insurance verticals to validate KPIs for legacy-to-Tableau migrations.</li>
-          <li>Built scalable schemas for 450+ reports capturing cross-functional dependencies, enabling parallel onboarding.</li>
-          <li>Created a prioritisation framework sequencing 200+ executive reports for a structured Phase 1 rollout.</li>
+          <li>Coordinated 28 analysts across 10 insurance verticals to validate KPIs for legacy-to-Tableau dashboard migrations.</li>
+          <li>Designed a scalable schema for 450+ reports mapping cross-functional dependencies, enabling parallel onboarding.</li>
+          <li>Built a prioritisation framework balancing stakeholder needs to sequence 200+ executive reports for Phase 1.</li>
         </ul>
       </article>
 
       <article class="resume__entry">
         <div class="resume__entry-head">
-          <h3>Financial Analyst (Product &amp; Strategy)</h3>
-          <span class="resume__date">Jan 2022 – Jun 2022</span>
+          <h3>Product &amp; Strategy Analyst</h3>
+          <span class="resume__date">Jan 2022 - Jun 2022</span>
         </div>
         <p class="resume__org">GreyMatter Technologies · Remote, India</p>
         <p class="resume__note">Agri-fintech backed by IIMA Ventures, providing input credit for farmers.</p>
         <ul>
-          <li>Profiled 30+ investors and sourced funding opportunities, feeding the early-stage investment pipeline.</li>
-          <li>Automated loan amortisation for ~200 farmer credit accounts, cutting processing time by 70% and eliminating errors.</li>
-          <li>Built an Excel dashboard tracking 5 portfolio KPIs, used by leadership for weekly credit decisions.</li>
+          <li>Profiled 30+ investors and sourced funding opportunities, directly contributing to the early-stage investment pipeline.</li>
+          <li>Streamlined loan amortisation for 200 farmer accounts, cutting processing time 70% and eliminating payout delays.</li>
+          <li>Defined 5 credit portfolio KPIs with leadership and built the tracking dashboard used for weekly credit decisions.</li>
         </ul>
       </article>
     </section>
 
+    <!-- Projects -->
+    <section class="resume__section reveal">
+      <h2 class="resume__heading">Projects</h2>
+
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>Autonomous Agent Connectors</h3>
+          <span class="resume__date">1st place · ₹1L prize pool</span>
+        </div>
+        <p class="resume__org">Internal Hackathon · Corridor Platforms</p>
+        <ul>
+          <li>Led a 3-member team and built a Claude Code plugin for credit-risk policy analysis and optimisation.</li>
+          <li>Co-designed an MCP server exposing platform APIs for agent read/write access across policies and simulations data.</li>
+          <li>Owned the domain-knowledge layer, structuring bundled skills to constrain agent reasoning to credit-risk context.</li>
+        </ul>
+        <p class="resume__note" style="margin-top:.7rem">
+          <a href="agent-connectors.html" class="inline-link">Read the case study →</a>
+        </p>
+      </article>
+
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>Cyber Crime Prediction</h3>
+          <span class="resume__date">M.Tech project</span>
+        </div>
+        <p class="resume__org">Tamil Nadu Cyber Crime Wing · IIT Madras</p>
+        <ul>
+          <li>Partnered with Tamil Nadu Police to model 271K cybercrime complaints; built an LSTM trend forecaster (WMAPE 14.68) and an XGBoost severity classifier projected to reduce human assessment by 90%.</li>
+          <li>Conducted thematic analysis of 30 field interviews and FIRs to identify cybercrime typologies for policy insight.</li>
+        </ul>
+      </article>
+
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>Concept Boost for Duolingo</h3>
+          <span class="resume__date">Course project</span>
+        </div>
+        <p class="resume__org">HelloPM AI Product Management</p>
+        <ul>
+          <li>Researched, specced and prototyped a feature that turns a learner's repeated grammar mistakes into one concept to learn, practise and revisit.</li>
+        </ul>
+        <p class="resume__note" style="margin-top:.7rem">
+          <a href="concept-boost.html" class="inline-link">Read the case study →</a>
+        </p>
+      </article>
+    </section>
+
     <!-- Education -->
-    <section class="resume__section">
+    <section class="resume__section reveal">
       <h2 class="resume__heading">Education</h2>
       <article class="resume__entry">
         <div class="resume__entry-head">
           <h3>Integrated M.Tech, Data Science</h3>
-          <span class="resume__date">Jul 2023 – May 2024</span>
+          <span class="resume__date">Jul 2023 - May 2024</span>
         </div>
-        <p class="resume__org">Indian Institute of Technology (IIT), Madras · GPA 8.9/10</p>
+        <p class="resume__org">Indian Institute of Technology (IIT) Madras · GPA 8.9/10</p>
       </article>
       <article class="resume__entry">
         <div class="resume__entry-head">
           <h3>B.Tech, Naval Architecture &amp; Ocean Engineering</h3>
-          <span class="resume__date">Jul 2019 – May 2023</span>
+          <span class="resume__date">Jul 2019 - May 2023</span>
         </div>
-        <p class="resume__org">Indian Institute of Technology (IIT), Madras · GPA 8.9/10</p>
+        <p class="resume__org">Indian Institute of Technology (IIT) Madras · GPA 8.9/10</p>
         <p class="resume__note">Exchange semester in Data Science at KTH Royal Institute of Technology, Sweden.</p>
+      </article>
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>AI Product Management</h3>
+          <span class="resume__date">Certification</span>
+        </div>
+        <p class="resume__org">HelloPM</p>
       </article>
     </section>
 
+    <!-- Leadership & honours -->
+    <section class="resume__section reveal">
+      <h2 class="resume__heading">Leadership &amp; honours</h2>
+
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>Head of Operations &amp; Analysis</h3>
+        </div>
+        <p class="resume__org">International &amp; Alumni Relations · IIT Madras</p>
+        <ul>
+          <li>Led execution for 20+ events across 11 teams, managing an 8-member ops team to drive scale and consistency.</li>
+          <li>Owned end-to-end logistics for 1.3K+ attendees, managing vendors, inventory and on-ground execution.</li>
+        </ul>
+      </article>
+
+      <article class="resume__entry">
+        <div class="resume__entry-head">
+          <h3>Head of Student Robotics Club</h3>
+        </div>
+        <p class="resume__org">Centre for Innovation (CFI) · IIT Madras</p>
+        <ul>
+          <li>Led a 3-tier, 60+ member team across 6 projects with a ₹1.8L budget, coordinating planning and execution.</li>
+          <li>Instituted a collaborative workshop series: 10+ sessions, 5 projects and 120 participants.</li>
+        </ul>
+      </article>
+
+      <div class="resume__honours">
+        <p class="resume__honour"><strong>Rashtrapati Award (2016):</strong> national honour from the President of India for leadership and service, awarded to the top 0.1% of Scouts &amp; Guides.</p>
+        <p class="resume__honour"><strong>Vastra Case Study, IIT Madras:</strong> 1st place at institute level for an SDG-aligned strategy for a sportswear brand.</p>
+        <p class="resume__honour"><strong>Parliament Delegate:</strong> selected to a 90-member student delegation to Parliament, engaging with senior policymakers.</p>
+      </div>
+    </section>
+
     <!-- Skills -->
-    <section class="resume__section">
+    <section class="resume__section reveal">
       <h2 class="resume__heading">Skills</h2>
       <div class="resume__skills">
-        <div><h4>Strategy &amp; Discovery</h4><p>User Research · Problem Definition · User Story Mapping · Metrics Definition</p></div>
-        <div><h4>Delivery &amp; Execution</h4><p>Feature Prioritisation · PRD Writing · Stakeholder Alignment · A/B Testing</p></div>
-        <div><h4>Tools</h4><p>Figma · Linear · Jira · Amplitude · Lovable</p></div>
-        <div><h4>Technical</h4><p>Python · SQL · Pandas · NumPy</p></div>
+        <div>
+          <h4>Strategy &amp; discovery</h4>
+          <p>User research · Structured problem solving · Product strategy · Competitive analysis · Key metrics</p>
+        </div>
+        <div>
+          <h4>Delivery &amp; execution</h4>
+          <p>Feature &amp; roadmap prioritisation · PRD writing · Stakeholder alignment · A/B testing</p>
+        </div>
+        <div>
+          <h4>AI / ML &amp; agentic</h4>
+          <p>Generative AI · LLMs · Agentic workflows · MCP · Claude Code · Machine learning</p>
+        </div>
+        <div>
+          <h4>Tools &amp; prototyping</h4>
+          <p>Figma · Lovable · Amplitude · Linear · Jira</p>
+        </div>
+        <div>
+          <h4>Technical</h4>
+          <p>Python · SQL · Pandas · NumPy · Git</p>
+        </div>
       </div>
     </section>
 
     <div class="resume__footer-cta">
-      <a href="assets/Rinkle_Sebastian_Resume.pdf" download class="btn btn--primary">⬇ Download PDF</a>
-      <a href="index.html" class="btn btn--ghost">Back home</a>
+      <a href="assets/Rinkle_Sebastian_Resume.pdf" download class="btn btn--primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>
+        Download PDF
+      </a>
+      <a href="index.html#work" class="btn btn--ghost">See my work</a>
+      <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--quiet">Email me</a>
     </div>
   </main>
 
   <footer class="footer">
-    <p>&copy; <span id="year"></span> Rinkle Sebastian</p>
+    <div class="footer__inner">
+      <p class="colophon">&copy; 2026, written, edited and shipped by Rinkle Sebastian. Illustration by Twinkle Sebastian.</p>
+      <div class="footer__links">
+        <a href="index.html#work">Work</a>
+        <a href="resume.html">Resume</a>
+        <a href="mailto:rinklesebastian12@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
