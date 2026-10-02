@@ -5,6 +5,15 @@
    Display: Fraunces (soft + wonk for personality). UI: Inter.
    ========================================================================== */
 
+/* ---------- Signature font: self-hosted + preloaded so it never flashes ---------- */
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("assets/fonts/dancing-script-700.woff2") format("woff2");
+}
+
 /* ---------- Tokens: light (default) ---------- */
 :root {
   color-scheme: light;
