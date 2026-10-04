@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alert email builder – prototype</title><style>:root{--ink:#14202b;--ink2:#3d4b59;--mut:#6b7a89;--line:#e3e8ee;--bg:#f5f7fa;--card:#fff;--brand:#1f6f78;--brand2:#e3f2f3;--acc:#f2b84b;--yel:#fff6d6;--red:#c93c3c;--grn:#2f8f5b;--blu:#3b6fd4;--org:#d9822b;--r:10px;--font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{font:14px/1.45 var(--font);color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer}input,select,textarea{font:inherit;color:inherit}
+.app{display:flex;flex-direction:column;height:100vh;min-height:620px}
+.top{display:flex;align-items:center;gap:14px;padding:0 18px;height:50px;background:#102a30;color:#fff;flex:none}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px}.logo i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#3fb8c2,#1f6f78);display:inline-block}
+.top .crumb{color:#a9c4c8;font-size:13px}.top .sp{flex:1}.top .pill{background:#ffffff1a;padding:4px 10px;border-radius:99px;font-size:12px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:500;color:var(--ink)}.btn:hover{background:#f1f4f7}
+.btn.p{background:var(--brand);border-color:var(--brand);color:#fff}.btn.p:hover{background:#185a62}.btn.p[disabled]{background:#9fbfc3;border-color:#9fbfc3;cursor:not-allowed}
+.btn.s{padding:4px 9px;font-size:12px}.btn.g{border-color:transparent;background:transparent}.btn.g:hover{background:#eef2f5}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);padding:0 18px;background:#fff;flex:none}
+.tab{padding:11px 14px;border:0;background:none;color:var(--mut);font-weight:500;border-bottom:2px solid transparent}.tab.on{color:var(--brand);border-color:var(--brand)}
+.main{flex:1;overflow:auto;padding:20px 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}.pad{padding:16px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:0 0 8px}.sub{color:var(--mut);font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:500;background:#eef2f5;color:var(--ink2)}
+.chip.grn{background:#e2f4ea;color:#1d6b42}.chip.red{background:#fbe5e5;color:#9b2a2a}.chip.org{background:#fdeede;color:#9a5a12}.chip.blu{background:#e5edfb;color:#274e9e}.chip.yel{background:var(--yel);color:#7a5a00}
+table{border-collapse:collapse;width:100%}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);background:#fafbfc}td{padding:8px 10px;border-bottom:1px solid #eef1f4;vertical-align:middle}
+.mono{font-family:var(--mono);font-size:12.5px}.row{display:flex;gap:10px;align-items:center}.grow{flex:1}.gap{gap:16px}
+input[type=text],select,textarea{border:1px solid #cfd8e0;border-radius:7px;padding:6px 9px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #1f6f7855;border-color:var(--brand)}
+.hint{background:#fff9e6;border:1px solid #f3e2a8;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#6b5400}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#102a30;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;z-index:99}.toast.on{opacity:1}
+.err{color:var(--red);font-size:12.5px}.ok{color:var(--grn);font-size:12.5px}
+.tour{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:10px 14px;max-width:290px;box-shadow:0 8px 24px #0002;font-size:12.5px;z-index:90}
+.tour b{display:block;margin-bottom:2px}.tour button{float:right;border:0;background:none;color:var(--mut)}
+.note{position:fixed;left:12px;bottom:8px;font-size:11px;color:var(--mut);z-index:5}
+
+.wrap{max-width:1180px;margin:0 auto}.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:960px){.g2{grid-template-columns:1fr}}
+.field{display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid var(--line);padding:6px 12px;position:relative}.field label{width:54px;color:var(--mut);padding-top:6px;font-size:13px}.field .in{flex:1;display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-height:32px}
+.field input{border:0;padding:5px 2px;flex:1;min-width:120px;outline:0!important}.tagc{background:#e5edfb;color:#274e9e;border-radius:99px;padding:2px 4px 2px 9px;font-size:12.5px;display:inline-flex;gap:4px;align-items:center}.tagc.col{background:var(--brand2);color:#0f4f56}.tagc.bad{background:#fbe5e5;color:#9b2a2a}.tagc button{border:0;background:none;color:inherit;font-size:14px;line-height:1;padding:0 4px}
+.dd{position:absolute;left:66px;top:100%;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px #0002;z-index:20;min-width:260px;max-height:200px;overflow:auto}.dd div{padding:7px 12px;cursor:pointer;font-size:13px}.dd div:hover,.dd div.hl{background:var(--brand2)}
+.ed{position:relative}.ed textarea{border:0;border-radius:0;min-height:230px;resize:vertical;font:13px/1.55 var(--mono);padding:12px}.ed textarea:focus{outline:0}
+.sevs{display:flex;gap:6px}.sevs button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px}.sevs button.on{border-color:var(--brand);background:var(--brand2)}
+.mail{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.mail .h{padding:12px 16px;border-bottom:1px solid var(--line);background:#fafbfc}.mail .b{padding:16px;white-space:pre-wrap;font-size:14px;line-height:1.6}.mail .h div{font-size:12.5px;color:var(--mut)}.mail .h b{color:var(--ink);font-size:15px;display:block;margin-bottom:4px}
+.act{display:flex;gap:8px;flex-wrap:wrap}.act label{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;cursor:pointer}.act label.on{border-color:var(--brand);background:var(--brand2)}.act input{display:none}
+.tour{bottom:70px}.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 24px 24px;display:flex;gap:10px;align-items:center}
+</style></head><body><div class="app">
+<div class="top"><div class="logo"><i></i>Northwind Decisions</div><span class="crumb">Monitoring › Alerts › Review overdue</span><span class="sp"></span><span class="pill">Admin</span></div>
+<div class="main"><div class="wrap">
+<h1>Edit alert · Review date overdue</h1><div class="sub" style="margin-bottom:14px">When the condition is met for a model on the Monitoring Dashboard, run the actions below.</div>
+<div class="card pad" style="margin-bottom:14px"><div class="row gap" style="flex-wrap:wrap"><div><div class="sub">Severity</div><div class="sevs" id="sevs"></div></div><div class="grow"><div class="sub">Condition</div><div class="mono" style="padding:7px 0">Next Review Date &lt; today</div></div></div>
+<div style="margin-top:12px"><div class="sub">Actions</div><div class="act" id="acts"></div></div></div>
+<div id="emailcfg"></div>
+</div></div>
+<div class="bar"><span id="status" class="grow"></span><button class="btn" onclick="toast('Draft discarded')">Cancel</button><button class="btn p" id="save" onclick="toast('Alert saved')">Save alert</button></div></div>
+<div class="toast" id="toast"></div>
+<div class="tour" id="tour"><button onclick="this.parentNode.remove()">✕</button><b>Try this</b>Type <span class="mono">{</span> in the body for autocomplete. Add <span class="mono">{typo}</span> to see the error that blocks save. Change severity to swap the icon.</div>
+<div class="note">Illustrative prototype · fictional bank and synthetic data</div>
+<script>
+const $=s=>document.querySelector(s);const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000)};
+const ICON={High:'❗',Medium:'⚠️',Low:'ℹ️'};
+const REC={MODEL_ID:'MDL-2041',MODEL_NAME:'Retail PD Scorecard v4',Current_Owner:'Priya Nair',RISK_TIER:'Tier 1',NEXT_REVIEW_DATE:'2026-09-28',DAYS_OVERDUE:'6',Maintenance_Team:null,Owner_Email:'priya.nair@northwind.example',Manager_Email:'dan.okoye@northwind.example'};
+const COLS=Object.keys(REC);const EMAILCOLS=['Owner_Email','Manager_Email'];
+let S={sev:'High',acts:{platform:false,flag:true,email:true},showCc:false,preview:true,
+to:[{v:'Owner_Email',col:1}],cc:[{v:'Manager_Email',col:1}],bcc:[],
+subj:'{alert_icon} {alert_severity} {alert_name} triggered for {MODEL_ID}',
+body:'Hi Team,\n\n{alert_name} has been triggered for the model below:\n\n- Model: {MODEL_NAME} ({MODEL_ID})\n- Owner: {Current_Owner}\n- Risk tier: {RISK_TIER}\n- Review was due: {NEXT_REVIEW_DATE}\n- Maintenance team: {Maintenance_Team}\n- Severity: {alert_severity}\n\nPlease review and take the necessary action.'};
+const alertVars=()=>({alert_name:'Review date overdue',alert_icon:ICON[S.sev],alert_severity:S.sev,trigger_time:'04 Oct 2026, 09:00'});
+const ALL=()=>[...Object.keys(alertVars()),...COLS];
+function vals(){return {...alertVars(),...Object.fromEntries(COLS.map(k=>[k,REC[k]]))}}
+function bad(s){const m=[...s.matchAll(/\{([^{}]*)\}/g)].map(x=>x[1]);return [...new Set(m.filter(x=>!ALL().includes(x)))]}
+function fill(s){const v=vals();return s.replace(/\{([^{}]*)\}/g,(a,k)=>k in v?(v[k]==null||v[k]===''?'N/A':v[k]):a)}
+function head(){$('#sevs').innerHTML=['High','Medium','Low'].map(k=>`<button class="${k===S.sev?'on':''}" onclick="S.sev='${k}';all()">${ICON[k]} ${k}</button>`).join('');
+$('#acts').innerHTML=[['platform','Send notification (platform)'],['flag','Add alert flag (platform)'],['email','Send email (external)']].map(([k,l])=>`<label class="${S.acts[k]?'on':''}"><input type=checkbox ${S.acts[k]?'checked':''} onchange="S.acts.${k}=this.checked;all()">${l}</label>`).join('')}
+function chips(f){return S[f].map((c,i)=>`<span class="tagc ${c.col?'col':''} ${c.bad?'bad':''}">${c.col?'▦ ':''}${c.v}<button onclick="rm('${f}',${i})">×</button></span>`).join('')}
+function rm(f,i){S[f].splice(i,1);cfg()}
+function recField(f,lab){return `<div class="field"><label>${lab}</label><div class="in">${chips(f)}<input id="in_${f}" placeholder="${f==='to'?'Type an email or pick a column':''}" onfocus="dd('${f}')" oninput="dd('${f}')" onkeydown="kd(event,'${f}')" onblur="setTimeout(()=>closeDd('${f}'),150)"></div><div id="dd_${f}"></div></div>`}
+function dd(f){const q=($('#in_'+f).value||'').toLowerCase();const o=EMAILCOLS.filter(c=>c.toLowerCase().includes(q)&&!S[f].some(x=>x.v===c));$('#dd_'+f).innerHTML=o.length?`<div class="dd"><div style="color:var(--mut);font-size:11px;cursor:default">EMAIL COLUMNS DETECTED IN DASHBOARD</div>${o.map(c=>`<div onmousedown="addR('${f}','${c}',1)">▦ ${c} <span class="sub">· ${REC[c]}</span></div>`).join('')}</div>`:''}
+function closeDd(f){const e=$('#dd_'+f);if(e)e.innerHTML=''}
+function addR(f,v,col){S[f].push({v,col,bad:!col&&!/^[^@\s,]+@[^@\s,]+\.[^@\s,]+$/.test(v)});cfg()}
+function kd(e,f){if(e.key==='Enter'||e.key===','){e.preventDefault();const v=e.target.value.trim().replace(/,$/,'');if(v)addR(f,v,0)}}
+function cfg(){const act=S.acts.email;if(!act){$('#emailcfg').innerHTML='<div class="sub">Email configuration appears when “Send email (external)” is selected.</div>';return upd()}
+const eb=bad(S.subj+' '+S.body);
+$('#emailcfg').innerHTML=`<div class="row" style="margin-bottom:8px"><h2 class="grow" style="margin:0">Email</h2><label class="row sub" style="gap:6px"><span class="tg ${S.preview?'on':''}" style="display:inline-block;width:34px;height:19px;border-radius:99px;background:${S.preview?'var(--brand)':'#cdd6de'};position:relative;cursor:pointer" onclick="S.preview=!S.preview;cfg()"><i style="position:absolute;top:2px;left:${S.preview?17:2}px;width:15px;height:15px;background:#fff;border-radius:50%"></i></span>Preview</label><button class="btn s" onclick="resetT()">Reset to default template</button></div>
+<div class="${S.preview?'g2':''}"><div class="card" style="overflow:visible"><div class="hint" style="border-radius:10px 10px 0 0;border:0;border-bottom:1px solid #f3e2a8">Insert values with <span class="mono">{variable_name}</span>.<br>Alert: <span class="mono">{alert_name} {alert_icon} {alert_severity} {trigger_time}</span><br>Data (Monitoring Dashboard columns): <span class="mono">${COLS.slice(0,4).map(c=>'{'+c+'}').join(' ')} …</span></div>
+${recField('to','To')}${S.showCc?recField('cc','Cc')+recField('bcc','Bcc'):''}${S.showCc?'':`<div class="field"><label></label><a href="#" onclick="S.showCc=true;cfg();return false" style="font-size:13px;color:var(--brand)">Cc / Bcc</a></div>`}
+<div class="field"><label>Subject</label><div class="in"><input id="subj" value="${S.subj.replace(/"/g,'&quot;')}" oninput="S.subj=this.value;upd()"></div></div>
+<div class="ed"><textarea id="body" oninput="S.body=this.value;upd();ac()" spellcheck="false">${S.body}</textarea><div id="acbox"></div></div>
+<div id="errs" style="padding:8px 14px;border-top:1px solid var(--line);min-height:36px"></div></div>
+${S.preview?`<div><div class="hint" style="margin-bottom:8px">The first record from the Monitoring Dashboard (${REC.MODEL_ID}) is used to fill the preview.</div><div class="mail"><div class="h"><b id="pv_s"></b><div id="pv_to"></div></div><div class="b" id="pv_b"></div></div></div>`:''}</div>`;upd()}
+function ac(){const ta=$('#body');const pre=ta.value.slice(0,ta.selectionStart);const m=pre.match(/\{([A-Za-z_]*)$/);const box=$('#acbox');if(!m){box.innerHTML='';return}const o=ALL().filter(v=>v.toLowerCase().startsWith(m[1].toLowerCase())).slice(0,6);box.innerHTML=o.length?`<div class="dd" style="left:16px;top:auto;bottom:10px">${o.map(v=>`<div onmousedown="ins('${v}',${m[1].length})">{${v}}</div>`).join('')}</div>`:''}
+function ins(v,n){const ta=$('#body');const p=ta.selectionStart;ta.value=ta.value.slice(0,p-n)+v+'}'+ta.value.slice(p);S.body=ta.value;ta.focus();$('#acbox').innerHTML='';upd()}
+function upd(){const e=S.acts.email;const eb=bad(S.subj+' '+S.body);const noTo=!S.to.length;const badEm=[...S.to,...S.cc,...S.bcc].some(c=>c.bad);const noSubj=!S.subj.trim();
+const errs=[...eb.map(v=>`{${v}} not found in available fields`),...(noTo?['Add at least one recipient']:[]),...(badEm?['One or more email addresses are invalid']:[]),...(noSubj?['Subject cannot be empty']:[])];
+const ee=$('#errs');if(ee)ee.innerHTML=errs.length?errs.map(x=>`<div class="err">✕ ${x}</div>`).join(''):'<span class="ok">✓ No errors. Missing values will show as N/A.</span>';
+const ps=$('#pv_s');if(ps){ps.textContent=fill(S.subj);$('#pv_b').textContent=fill(S.body);const nm=l=>l.map(c=>c.col?REC[c.v]:c.v).join(', ');$('#pv_to').innerHTML=`To: ${nm(S.to)||'—'}${S.cc.length?'<br>Cc: '+nm(S.cc):''}${S.bcc.length?'<br>Bcc: (hidden from others)':''}`}
+$('#save').disabled=e&&errs.length>0;$('#status').innerHTML=e&&errs.length?`<span class="err">${errs.length} issue${errs.length>1?'s':''} to fix before saving</span>`:''}
+function resetT(){S.subj='{alert_icon}{alert_severity} {alert_name} has been triggered for Model';S.body='Hi,\n\nAlert {alert_name} has been triggered for the model with the following details:\n\n- Alert Name: {alert_name}\n- Severity: {alert_severity}\n\nPlease review and take necessary action.';cfg();toast('Default template restored')}
+function all(){head();cfg()}all();
+</script></body></html>

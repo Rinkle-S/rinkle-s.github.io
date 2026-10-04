@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Platform assistant over MCP – prototype</title><style>:root{--ink:#14202b;--ink2:#3d4b59;--mut:#6b7a89;--line:#e3e8ee;--bg:#f5f7fa;--card:#fff;--brand:#1f6f78;--brand2:#e3f2f3;--acc:#f2b84b;--yel:#fff6d6;--red:#c93c3c;--grn:#2f8f5b;--blu:#3b6fd4;--org:#d9822b;--r:10px;--font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{font:14px/1.45 var(--font);color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer}input,select,textarea{font:inherit;color:inherit}
+.app{display:flex;flex-direction:column;height:100vh;min-height:620px}
+.top{display:flex;align-items:center;gap:14px;padding:0 18px;height:50px;background:#102a30;color:#fff;flex:none}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px}.logo i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#3fb8c2,#1f6f78);display:inline-block}
+.top .crumb{color:#a9c4c8;font-size:13px}.top .sp{flex:1}.top .pill{background:#ffffff1a;padding:4px 10px;border-radius:99px;font-size:12px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:500;color:var(--ink)}.btn:hover{background:#f1f4f7}
+.btn.p{background:var(--brand);border-color:var(--brand);color:#fff}.btn.p:hover{background:#185a62}.btn.p[disabled]{background:#9fbfc3;border-color:#9fbfc3;cursor:not-allowed}
+.btn.s{padding:4px 9px;font-size:12px}.btn.g{border-color:transparent;background:transparent}.btn.g:hover{background:#eef2f5}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);padding:0 18px;background:#fff;flex:none}
+.tab{padding:11px 14px;border:0;background:none;color:var(--mut);font-weight:500;border-bottom:2px solid transparent}.tab.on{color:var(--brand);border-color:var(--brand)}
+.main{flex:1;overflow:auto;padding:20px 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}.pad{padding:16px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:0 0 8px}.sub{color:var(--mut);font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:500;background:#eef2f5;color:var(--ink2)}
+.chip.grn{background:#e2f4ea;color:#1d6b42}.chip.red{background:#fbe5e5;color:#9b2a2a}.chip.org{background:#fdeede;color:#9a5a12}.chip.blu{background:#e5edfb;color:#274e9e}.chip.yel{background:var(--yel);color:#7a5a00}
+table{border-collapse:collapse;width:100%}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);background:#fafbfc}td{padding:8px 10px;border-bottom:1px solid #eef1f4;vertical-align:middle}
+.mono{font-family:var(--mono);font-size:12.5px}.row{display:flex;gap:10px;align-items:center}.grow{flex:1}.gap{gap:16px}
+input[type=text],select,textarea{border:1px solid #cfd8e0;border-radius:7px;padding:6px 9px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #1f6f7855;border-color:var(--brand)}
+.hint{background:#fff9e6;border:1px solid #f3e2a8;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#6b5400}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#102a30;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;z-index:99}.toast.on{opacity:1}
+.err{color:var(--red);font-size:12.5px}.ok{color:var(--grn);font-size:12.5px}
+.tour{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:10px 14px;max-width:290px;box-shadow:0 8px 24px #0002;font-size:12.5px;z-index:90}
+.tour b{display:block;margin-bottom:2px}.tour button{float:right;border:0;background:none;color:var(--mut)}
+.note{position:fixed;left:12px;bottom:8px;font-size:11px;color:var(--mut);z-index:5}
+
+.layout{display:grid;grid-template-columns:270px 1fr;flex:1;min-height:0}@media(max-width:820px){.layout{grid-template-columns:1fr}.side{display:none}}
+.side{background:#fff;border-right:1px solid var(--line);padding:16px;overflow:auto}.side h2{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.q{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 10px;margin-bottom:7px;font-size:13px}.q:hover{border-color:var(--brand);background:var(--brand2)}.q small{display:block;color:var(--mut);font-size:11px}
+.chat{display:flex;flex-direction:column;min-height:0}.msgs{flex:1;overflow:auto;padding:20px 24px}.m{max-width:760px;margin-bottom:14px;display:flex;gap:10px}.m.u{margin-left:auto;justify-content:flex-end}
+.bub{padding:10px 14px;border-radius:12px;background:#fff;border:1px solid var(--line)}.u .bub{background:var(--brand);color:#fff;border-color:var(--brand)}.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#3fb8c2,#1f6f78);flex:none;color:#fff;font-size:12px;display:grid;place-items:center;font-weight:700}
+.bub p{margin:0 0 8px}.bub p:last-child{margin:0}.tool{font:11.5px var(--mono);color:var(--mut);background:#eef2f5;border-radius:6px;padding:3px 8px;margin-bottom:6px;display:inline-block}
+.res{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;background:#fafbfc;display:block;cursor:pointer;text-align:left;width:100%}.res:hover{border-color:var(--brand)}.res b{color:var(--brand)}.res .s{color:var(--mut);font-size:12.5px}
+.filters{font-size:12px;color:var(--mut);margin-top:6px}.nx{margin-top:8px;color:var(--ink2)}.fu{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.inp{display:flex;gap:8px;padding:12px 24px;border-top:1px solid var(--line);background:#fff}.inp input{flex:1}
+.dots span{display:inline-block;width:6px;height:6px;margin-right:3px;border-radius:50%;background:#9bb;animation:b 1s infinite}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}@keyframes b{50%{transform:translateY(-4px)}}
+.setup{background:#0f1b22;color:#d6e4ea;border-radius:8px;padding:10px 12px;font:12px/1.6 var(--mono);margin:8px 0;overflow:auto;white-space:pre}
+</style></head><body><div class="app">
+<div class="top"><div class="logo"><i></i>Northwind Decisions</div><span class="crumb">Connected to your AI assistant via MCP</span><span class="sp"></span><span class="pill">Server: northwind</span><button class="btn s" style="background:#ffffff1a;color:#fff;border-color:#ffffff33" onclick="setup()">How to connect</button></div>
+<div class="layout"><div class="side"><h2>Try asking</h2>
+<button class="q" onclick="ask('What can you do?')">What can you do?<small>Capabilities</small></button>
+<button class="q" onclick="ask('find income')">Find objects named “income”<small>Search · multiple matches</small></button>
+<button class="q" onclick="ask('what is the impact of feat_a')">What’s the impact of feat_a?<small>Lineage · downstream</small></button>
+<button class="q" onclick="ask('what is the next model due for review')">Next model due for review?<small>Custom fields · dates</small></button>
+<button class="q" onclick="ask('how do I retire it')">How do I retire it?<small>Docs · keeps context</small></button>
+<button class="q" onclick="ask('approve model_x for me')">Approve model_x for me<small>Out of scope · graceful no</small></button>
+<button class="q" onclick="ask('find utilisation')">Find “utilisation”<small>Zero results</small></button>
+<h2 style="margin-top:18px">Server settings</h2><div class="sub" style="font-size:12.5px"><b>Instructions</b><br>“Call the platform <i>ND</i>. AMR = Annual Model Review. ‘Owned by’ = Current Owner.”</div></div>
+<div class="chat"><div class="msgs" id="msgs"></div><form class="inp" onsubmit="event.preventDefault();ask($('#t').value);$('#t').value=''"><input id="t" type="text" placeholder="Ask about models, features, data, or how-tos…" autocomplete="off"><button class="btn p">Send</button></form></div></div></div>
+<div class="note">Illustrative prototype · fictional bank, objects and data · responses are scripted</div>
+<script>
+const $=s=>document.querySelector(s);let ctx=null;
+const link=(n)=>`<a href="#" onclick="return false" style="color:var(--brand)">${n} ↗</a>`;
+function add(role,html,tool){const d=document.createElement('div');d.className='m '+(role==='u'?'u':'');d.innerHTML=(role==='u'?'':'<div class="av">N</div>')+`<div class="bub">${tool?`<span class="tool">⚙ ${tool}</span><br>`:''}${html}</div>`;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e6;return d}
+function fu(list){return `<div class="fu">${list.map(x=>`<button class="btn s" onclick="ask('${x[1]||x[0]}')">${x[0]}</button>`).join('')}</div>`}
+const R={
+cap:()=>({t:'list_capabilities',h:`<p>I can help you <b>find</b> objects, <b>trace lineage</b> (what feeds an object and what depends on it), <b>explain</b> what an object is, answer questions from <b>model custom fields</b> like review dates and owners, and <b>guide you through the docs</b>.</p><p>I can’t take actions yet (approve, register, run simulations), but I’ll point you to where to do them.</p>${fu([['Find an object','find income'],['Show impact of a feature','what is the impact of feat_a'],['Next model due','what is the next model due for review']])}`}),
+find:()=>{ctx={type:'object',name:'income_verified_flag'};return{t:'search_objects(query="income", dedupe=true)',h:`<p><b>4 objects match “income”.</b> Which one?</p>
+<button class="res" onclick="ask('open annual_income')"><b>1. annual_income</b> <span class="chip">Data element</span><div class="s">Approved v3 · Consumer Lending · matched on name</div></button>
+<button class="res" onclick="ask('open income_stability_12m')"><b>2. income_stability_12m</b> <span class="chip">Feature</span><div class="s">Approved v2 · Cards · matched on name</div></button>
+<button class="res" onclick="ask('open income_verified_flag')"><b>3. income_verified_flag</b> <span class="chip">Feature</span><div class="s">Draft v1 · Acquisition · matched on name</div></button>
+<button class="res" onclick="ask('open hh_income_band')"><b>4. hh_income_band</b> <span class="chip">Feature</span><div class="s">Retired v5 · Cards · matched on alias</div></button>
+<div class="filters">Searched: name, alias · all object types · one row per object (versions collapsed)</div><div class="nx">Reply with a number to open one, or narrow by status, group or type.</div>`}},
+open:(n)=>({t:'get_object(name="'+n+'")',h:`<p><b>${n}</b> <span class="chip grn">Approved v3</span> · ${n.includes('income')?'Feature':'Model'}<br><span class="sub">Owner: Priya Nair · Group: Consumer Lending</span></p><p>Monthly verified income divided by stated income, capped at 1.5.</p><div class="nx">${link('Open in platform')}</div>${fu([['See definition','show definition'],['Lineage','what is the impact of feat_a'],['How to retire','how do I retire it']])}`}),
+impact:()=>{ctx={type:'feature',name:'feat_a'};return{t:'get_lineage(object="feat_a", direction="downstream")',h:`<p><b>feat_a</b> (approved v3) is used by <b>3 features</b> and <b>2 models</b>.</p><p><b>Features:</b> income_stability_12m (approved), income_verified_flag (approved), hh_income_band (draft)<br><b>Models:</b> pd_scorecard_v2 (approved), marketing_score (approved)</p><div class="filters">Direction: downstream · version traced: v3 · counts are per object, not per version</div><div class="nx">Want the upstream side, or to drill into specific columns?</div>${fu([['Upstream','what feeds feat_a'],['How do I retire it?','how do I retire it']])}`}},
+up:()=>({t:'get_lineage(object="feat_a", direction="upstream")',h:`<p><b>feat_a</b> v3 is built from <b>2 data elements</b> and <b>1 table</b>.</p><p>Data elements: monthly_income, stated_income<br>Table: applications_core (columns: income_m, income_s)</p><div class="nx">Tables have no versions, so none is shown.</div>`}),
+due:()=>({t:'list_model_custom_fields() → search_models(filter=…)',h:`<p>Using <b>Next AMR</b> (Annual Model Review). Nearest first, overdue called out:</p>
+<button class="res"><b>Mortgage Prepay v5</b> <span class="chip red">overdue 3 days</span><div class="s">Next AMR: 2026-10-01 · Owner: Luis Ortega</div></button>
+<button class="res"><b>SME Line Utilisation v2</b><div class="s">Next AMR: 2026-10-28 · Owner: Daniel Okoye</div></button>
+<button class="res"><b>Retail PD Scorecard v4</b><div class="s">Next AMR: 2026-11-14 · Owner: Priya Nair</div></button>
+<div class="filters">Filters: Usage Status = Production · sorted by Next AMR ascending. “Review” could also mean OPA or Validation, say if you meant one of those.</div><div class="nx">Want full details of any of these, or narrow by owner?</div>`}),
+docs:()=>{const n=ctx?ctx.name:'this object';return{t:'search_docs("retire object")',h:`<p>To retire <b>${n}</b>:</p><ol style="margin:0 0 8px 18px;padding:0"><li>Open the object and go to <b>Details</b>.</li><li>Click <b>Change status</b> and choose <b>Retire</b>.</li><li>Confirm. Objects that use it will be flagged, not changed.</li></ol><div class="nx">Source: ${link('Docs › Object lifecycle › Retiring objects')}<br>Want me to check what would be affected first?</div>${fu([['Check impact','what is the impact of feat_a']])}`}},
+no:()=>({t:'—',h:`<p>I can’t approve objects yet: that action isn’t among my current capabilities.</p><p>You can approve it from the object’s <b>Approvals</b> tab. I can show you its approval history or who the approver is.</p>${fu([['What can you do?']])}`}),
+util:()=>({t:'search_objects(query="utilization", fuzzy=true)',h:`<p>Found <b>revolving_utilization</b> <span class="chip">Feature</span> (approved v2 · Cards). Matched on name.</p><div class="nx">Want its definition, inputs, lineage or approval history?</div>${fu([['Lineage','what is the impact of feat_a'],['Definition','show definition']])}`}),
+none:()=>({t:'search_objects(query="utilisation")',h:`<p>Nothing matched “<b>utilisation</b>”.</p><p>Searched: name, alias, tags, across all object types. Try the broader “util”, the alternate spelling “utilization”, or drop filters.</p>${fu([['Try “utilization”','find utilization']])}`}),
+def:()=>({t:'get_object_definition',h:`<p>Short version: it divides verified income by stated income and caps the ratio at 1.5.</p><div class="setup">ratio = verified_income / stated_income\nreturn min(ratio, 1.5)</div><div class="nx">${link('Open full definition')}</div>`})};
+function ask(q){q=(q||'').trim();if(!q)return;add('u',q);const l=q.toLowerCase();let k;
+ if(/what can you|how do i use|capab/.test(l))k='cap';else if(/utilis/.test(l))k='none';else if(/utiliz/.test(l))k='util';else if(/^find|where is|search/.test(l))k='find';else if(/^open (.+)/.test(l)){const n=q.slice(5);ctx={name:n};k=['open',n]}else if(/feed|upstream/.test(l))k='up';else if(/impact|uses|depend/.test(l))k='impact';else if(/due|review|amr/.test(l))k='due';else if(/retire|how do i/.test(l))k='docs';else if(/approve|register|run a sim/.test(l))k='no';else if(/definition|logic/.test(l))k='def';else k='cap';
+ const th=add('a','<span class="dots"><span></span><span></span><span></span></span>');setTimeout(()=>{th.remove();const r=Array.isArray(k)?R[k[0]](k[1]):R[k]();add('a',r.h,r.t==='—'?null:r.t)},650)}
+function setup(){add('a',`<p>Each instance has its own MCP URL. Add it to your AI assistant, sign in with your usual login, pick a workspace, and start asking.</p><div class="setup">claude mcp add --transport http northwind https://mcp.northwind.example/mcp\nclaude mcp login northwind</div><div class="nx">Admins set the server name and a short instruction note (aliases, acronyms, field meanings) in Settings › AI › MCP.</div>`)}
+add('a','Hi, I’m connected to your Northwind platform. Ask me about models, features and data, or pick a prompt on the left.');
+</script></body></html>

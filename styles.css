@@ -872,6 +872,36 @@ main { position: relative; z-index: 2; }
 }
 .cs-phone iframe { width: 100%; height: 100%; border: 0; display: block; }
 
+/* Full-width screen frame: for desktop/web-app prototypes, stacked under the
+   text rather than beside it like the phone frame above. */
+.cs-screen {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+.cs-screen__bar {
+  display: flex; align-items: center; gap: .55rem;
+  padding: .6rem .9rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.cs-screen__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border-2); flex: 0 0 auto; }
+.cs-screen__url {
+  margin-left: .3rem;
+  font-family: "Inter", sans-serif; font-size: .75rem; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  padding: .2rem .7rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cs-screen iframe {
+  width: 100%;
+  height: clamp(420px, 68vw, 640px);
+  border: 0; display: block; background: #fff;
+}
+
 /* Architecture diagram (MCP case study) */
 .arch {
   margin-top: 1.6rem;

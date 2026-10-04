@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Configurable Model Monitoring Dashboard – prototype</title><style>:root{--ink:#14202b;--ink2:#3d4b59;--mut:#6b7a89;--line:#e3e8ee;--bg:#f5f7fa;--card:#fff;--brand:#1f6f78;--brand2:#e3f2f3;--acc:#f2b84b;--yel:#fff6d6;--red:#c93c3c;--grn:#2f8f5b;--blu:#3b6fd4;--org:#d9822b;--r:10px;--font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{font:14px/1.45 var(--font);color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer}input,select,textarea{font:inherit;color:inherit}
+.app{display:flex;flex-direction:column;height:100vh;min-height:620px}
+.top{display:flex;align-items:center;gap:14px;padding:0 18px;height:50px;background:#102a30;color:#fff;flex:none}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px}.logo i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#3fb8c2,#1f6f78);display:inline-block}
+.top .crumb{color:#a9c4c8;font-size:13px}.top .sp{flex:1}.top .pill{background:#ffffff1a;padding:4px 10px;border-radius:99px;font-size:12px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:500;color:var(--ink)}.btn:hover{background:#f1f4f7}
+.btn.p{background:var(--brand);border-color:var(--brand);color:#fff}.btn.p:hover{background:#185a62}.btn.p[disabled]{background:#9fbfc3;border-color:#9fbfc3;cursor:not-allowed}
+.btn.s{padding:4px 9px;font-size:12px}.btn.g{border-color:transparent;background:transparent}.btn.g:hover{background:#eef2f5}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);padding:0 18px;background:#fff;flex:none}
+.tab{padding:11px 14px;border:0;background:none;color:var(--mut);font-weight:500;border-bottom:2px solid transparent}.tab.on{color:var(--brand);border-color:var(--brand)}
+.main{flex:1;overflow:auto;padding:20px 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}.pad{padding:16px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:0 0 8px}.sub{color:var(--mut);font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:500;background:#eef2f5;color:var(--ink2)}
+.chip.grn{background:#e2f4ea;color:#1d6b42}.chip.red{background:#fbe5e5;color:#9b2a2a}.chip.org{background:#fdeede;color:#9a5a12}.chip.blu{background:#e5edfb;color:#274e9e}.chip.yel{background:var(--yel);color:#7a5a00}
+table{border-collapse:collapse;width:100%}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);background:#fafbfc}td{padding:8px 10px;border-bottom:1px solid #eef1f4;vertical-align:middle}
+.mono{font-family:var(--mono);font-size:12.5px}.row{display:flex;gap:10px;align-items:center}.grow{flex:1}.gap{gap:16px}
+input[type=text],select,textarea{border:1px solid #cfd8e0;border-radius:7px;padding:6px 9px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #1f6f7855;border-color:var(--brand)}
+.hint{background:#fff9e6;border:1px solid #f3e2a8;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#6b5400}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#102a30;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.25s;pointer-events:none;z-index:99}.toast.on{opacity:1}
+.err{color:var(--red);font-size:12.5px}.ok{color:var(--grn);font-size:12.5px}
+.tour{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:10px 14px;max-width:290px;box-shadow:0 8px 24px #0002;font-size:12.5px;z-index:90}
+.tour b{display:block;margin-bottom:2px}.tour button{float:right;border:0;background:none;color:var(--mut)}
+.note{position:fixed;left:12px;bottom:8px;font-size:11px;color:var(--mut);z-index:5}
+
+.cols td input[type=text],.cols td select{padding:4px 7px}.sw{display:flex;gap:5px}.sw i{width:18px;height:18px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #cfd8e0;cursor:pointer}.sw i.on{box-shadow:0 0 0 2px var(--ink)}
+.tg{width:34px;height:19px;border-radius:99px;background:#cdd6de;position:relative;cursor:pointer;display:inline-block;vertical-align:middle;transition:.15s}.tg::after{content:"";position:absolute;left:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#fff;transition:.15s}.tg.on{background:var(--brand)}.tg.on::after{left:17px}
+.code{background:#0f1b22;color:#d6e4ea;border-radius:8px;padding:12px 14px;font:12.5px/1.6 var(--mono);width:100%;min-height:210px;border:0;resize:vertical}
+.cell-pill{padding:2px 8px;border-radius:6px;font-size:12px}.c-blue{background:#dbe7fb}.c-green{background:#dcf1e4}.c-orange{background:#fde6cb}.c-red{background:#fadcdc}.c-none{background:transparent}
+td.edt{background:var(--yel)}td.edt[contenteditable=true]{outline:2px solid var(--acc);outline-offset:-2px;background:#fffbe9}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:300px}.cal b{font-size:11px;color:var(--mut);text-align:center}.cal button{height:34px;border:1px solid var(--line);background:#fff;border-radius:6px;position:relative}.cal button.has::after{content:"";position:absolute;bottom:4px;left:50%;width:5px;height:5px;margin-left:-2.5px;background:var(--acc);border-radius:50%}.cal button.sel{background:var(--brand);color:#fff;border-color:var(--brand)}.cal button[disabled]{opacity:.35}
+.split{display:grid;grid-template-columns:1fr 330px;gap:16px}@media(max-width:900px){.split{grid-template-columns:1fr}}
+.log li{margin-bottom:8px;list-style:none}.log ul{padding:0;margin:0}
+</style></head><body><div class="app">
+<div class="top"><div class="logo"><i></i>Northwind Decisions</div><span class="crumb">Governance › Monitoring Dashboard</span><span class="sp"></span><span class="pill">Persona</span><select id="persona" style="width:auto;background:#ffffff1a;color:#fff;border-color:#ffffff33"><option value="admin">Admin (view + edit)</option><option value="analyst">Analyst (view only)</option></select></div>
+<div class="tabs" id="tabs"><button class="tab on" data-t="dash">Dashboard</button><button class="tab" data-t="layout">Details · Layout</button><button class="tab" data-t="logic">Details · Data logic</button><button class="tab" data-t="hist">Change history</button></div>
+<div class="main" id="main"></div></div>
+<div class="toast" id="toast"></div>
+<div class="tour" id="tour"><button onclick="this.parentNode.remove()">✕</button><b>Try this</b>Switch persona top-right. As Admin: add a column in <i>Layout</i>, break the code in <i>Data logic</i> to see validation, then edit cells on the <i>Dashboard</i>.</div>
+<div class="note">Illustrative prototype · fictional bank and synthetic data</div>
+<script>
+const $=s=>document.querySelector(s);
+const COLORS=['none','blue','green','orange','red'];
+let S={persona:'admin',tab:'dash',editing:false,freq:'Daily',
+cols:[{n:'Model Name',t:'String',e:false,c:'none',sys:true},{n:'Approval Status',t:'String',e:false,c:'blue',sys:true},{n:'MRM Owner',t:'String',e:true,c:'green'},{n:'Next Review Date',t:'Date',e:true,c:'green'}],
+rows:[['Retail PD Scorecard v4','Approved','Priya Nair','2026-11-14'],['SME Line Utilisation v2','Pending Approval','Daniel Okoye','2026-10-28'],['Card Fraud GBM v7','Approved','Mei Tanaka','2027-01-09'],['Auto LGD Model v3','Draft','Priya Nair','2026-12-02'],['Mortgage Prepay v5','Approved','Luis Ortega','2026-10-19']],
+code:`import pandas as pd\n\n# Inputs: platform_data, dashboard_data, file_data (optional)\ndf = platform_data[["Model Name", "Approval Status"]].copy()\n\nowners = file_data.set_index("Model Name")\ndf["MRM Owner"] = df["Model Name"].map(owners["Owner"])\ndf["Next Review Date"] = df["Model Name"].map(owners["Next Review"])\n\nreturn df`,
+codeState:'ok',hist:{'2026-10-01':['Layout: added column "Next Review Date" (Date, editable)','Data refresh: 5 rows replaced'],'2026-10-02':['Edited "MRM Owner" · Card Fraud GBM v7: Ken Aoki → Mei Tanaka  (by a.rao)'],'2026-10-03':['Edited "Next Review Date" · Mortgage Prepay v5: 2026-10-30 → 2026-10-19  (by a.rao)','Layout: reordered columns']},histSel:'2026-10-03'};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+const adm=()=>S.persona==='admin';
+function cellCls(c){return 'c-'+c}
+function render(){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===S.tab));
+ $('#tabs').querySelectorAll('.tab').forEach(b=>{if(b.dataset.t==='layout'||b.dataset.t==='logic')b.style.display=adm()?'':'none'});
+ if(!adm()&&(S.tab==='layout'||S.tab==='logic'))S.tab='dash';
+ $('#main').innerHTML=({dash,layout,logic,hist})[S.tab]()}
+function dash(){const ed=adm();
+ return `<div class="row" style="margin-bottom:12px"><div class="grow"><h1>Model Monitoring Dashboard</h1><div class="sub">${S.rows.length} models · refreshed daily 06:00 · ${adm()?'You can edit yellow columns':'View only'}</div></div>
+ ${ed?`<button class="btn" onclick="toast('Upload data from file… (.csv / .xlsx)')">+ Update data from file</button><button class="btn ${S.editing?'p':''}" onclick="S.editing=!S.editing;render()">${S.editing?'Done editing':'Edit data in table'}</button>`:''}</div>
+ <div class="card"><table><thead><tr>${S.cols.map(c=>`<th>${c.n} ${c.e&&ed?'<span class=chip style="text-transform:none;letter-spacing:0">editable</span>':''}</th>`).join('')}</tr></thead><tbody>${S.rows.map((r,i)=>`<tr>${S.cols.map((c,j)=>{const v=r[j]??'—';const isE=c.e&&ed;return `<td class="${isE?'edt':''}" ${isE&&S.editing?`contenteditable="true" onblur="edit(${i},${j},this.textContent)"`:''}>${c.c!=='none'?`<span class="cell-pill ${cellCls(c.c)}">${v}</span>`:v}</td>`}).join('')}</tr>`).join('')}</tbody></table></div>
+ ${!ed?'<p class="sub">Analysts see a clean, read-only view. Switch to Admin to configure or edit.</p>':''}`}
+function edit(i,j,v){v=v.trim();if(S.rows[i][j]!==v){const d='2026-10-04';(S.hist[d]=S.hist[d]||[]).push(`Edited "${S.cols[j].n}" · ${S.rows[i][0]}: ${S.rows[i][j]} → ${v}  (by you)`);S.rows[i][j]=v;toast('Change saved to history')}}
+function layout(){return `<h1>Layout configuration</h1><div class="sub" style="margin-bottom:12px">Define what the dashboard shows. Usually a one-time setup by an admin.</div>
+<div class="card cols"><table><thead><tr><th></th><th>Column name</th><th>Type</th><th>Editable in UI</th><th>Colour</th><th></th></tr></thead><tbody>${S.cols.map((c,i)=>`<tr><td style="width:60px"><button class="btn s g" onclick="mv(${i},-1)">↑</button><button class="btn s g" onclick="mv(${i},1)">↓</button></td>
+<td><input type=text value="${c.n}" onchange="S.cols[${i}].n=this.value"> ${c.sys?'<span class="chip blu">platform field</span>':''}</td>
+<td style="width:130px"><select onchange="S.cols[${i}].t=this.value">${['String','Integer','Date'].map(t=>`<option ${t===c.t?'selected':''}>${t}</option>`).join('')}</select></td>
+<td><span class="tg ${c.e?'on':''}" onclick="${c.sys?"toast('Platform fields are not editable')":`S.cols[${i}].e=!S.cols[${i}].e;render()`}"></span></td>
+<td><div class="sw">${COLORS.map(k=>`<i class="${k===c.c?'on':''}" style="background:${({none:'#fff',blue:'#9dbbf0',green:'#8fd1aa',orange:'#f2b97a',red:'#ee9c9c'})[k]}" onclick="S.cols[${i}].c='${k}';render()"></i>`).join('')}</div></td>
+<td><button class="btn s g" onclick="S.cols.splice(${i},1);S.rows.forEach(r=>r.splice(${i},1));render()">Delete</button></td></tr>`).join('')}</tbody></table></div>
+<div class="row" style="margin-top:12px"><button class="btn" onclick="addCol()">+ Add column</button><span class="grow"></span><span class="sub">Refresh frequency</span><select style="width:130px" onchange="S.freq=this.value"><option>Daily</option><option>Weekly</option><option>Hourly</option></select><button class="btn" onclick="toast('Refresh triggered')">Run now</button></div>
+<div class="hint" style="margin-top:12px">Platform fields (ID, Name, Approval Status) are read-only by default. Tracked-outside columns such as “Next Review Date” can be editable.</div>`}
+function addCol(){S.cols.push({n:'New column '+(S.cols.length+1),t:'String',e:false,c:'none'});S.rows.forEach(r=>r.push(null));render()}
+function mv(i,d){const j=i+d;if(j<0||j>=S.cols.length)return;[S.cols[i],S.cols[j]]=[S.cols[j],S.cols[i]];S.rows.forEach(r=>[r[i],r[j]]=[r[j],r[i]]);render()}
+function logic(){const msgs={ok:'<span class=ok>✓ Output matches layout. Safe to save.</span>',missing:`<div class=err>Missing required columns: [${S.cols.slice(2).map(c=>c.n).join(', ')}]</div>`,typo:'<div class=err>Unrecognised column(s) in DataFrame: [next_review_date, Owner]</div>',none:'<div class=err>Code block did not return a valid DataFrame.</div>'};
+return `<h1>Data population logic</h1><div class="sub" style="margin-bottom:12px">Write pandas to build the table. Must return a DataFrame whose columns match the layout (case-sensitive). Column order is resolved automatically.</div>
+<div class="split"><div><textarea class="code" id="code" spellcheck="false">${S.code}</textarea><div class="row" style="margin-top:8px"><button class="btn p" onclick="runCode()">Run &amp; save</button><span class="sub">Try:</span><button class="btn s" onclick="brk('missing')">drop a column</button><button class="btn s" onclick="brk('typo')">misspell a column</button><button class="btn s" onclick="brk('none')">return nothing</button><button class="btn s" onclick="S.code=S.code0;S.codeState='ok';render()">reset</button></div><div id="out" style="margin-top:10px">${msgs[S.codeState]}</div></div>
+<div class="card pad"><h2>Available inputs</h2><div class="sub">Reference these variables in the code block.</div><p><span class="mono">platform_data</span><br><span class="sub">Fields on the platform: status, version, owner…</span></p><p><span class="mono">dashboard_data</span><br><span class="sub">Current dashboard contents</span></p><p><span class="mono">file_data</span> <span class="chip">optional</span><br><span class="sub">.csv/.xlsx uploaded on Reports page: <b>governance_stats.xlsx</b></span></p></div></div>`}
+S.code0=S.code;
+function brk(k){S.code=$('#code').value;S.codeState=k;render()}
+function runCode(){S.code=$('#code').value;if(S.codeState==='ok'){toast('Saved. Dashboard refreshed (5 rows)')}else toast('Save blocked: fix the errors first')}
+function hist(){const ds=Object.keys(S.hist);const first=new Date(2026,9,1);const off=(first.getDay()+6)%7;let cells='';for(let i=0;i<off;i++)cells+='<span></span>';
+ for(let d=1;d<=31;d++){const k='2026-10-'+String(d).padStart(2,'0');const has=S.hist[k];cells+=`<button class="${has?'has':''} ${k===S.histSel?'sel':''}" ${k>'2026-10-04'?'disabled':''} onclick="S.histSel='${k}';render()">${d}</button>`}
+ const L=S.hist[S.histSel]||[];
+ return `<h1>Change history</h1><div class="sub" style="margin-bottom:12px">Browse how the dashboard looked on any date. Every layout change and every edit to an editable column is tracked.</div><div class="row gap" style="align-items:flex-start;flex-wrap:wrap"><div class="card pad"><h2>October 2026</h2><div class="cal">${['M','T','W','T','F','S','S'].map(x=>`<b>${x}</b>`).join('')}${cells}</div></div>
+ <div class="card pad grow" style="min-width:300px"><h2>${S.histSel}</h2>${L.length?`<div class="log"><ul>${L.map(x=>`<li>• ${x}</li>`).join('')}</ul></div>`:'<div class="sub">No changes on this day.</div>'}<div class="row" style="margin-top:10px"><button class="btn" onclick="toast('Previewing dashboard as of ${S.histSel}')">Preview dashboard on this date</button></div></div></div>`}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;render()});
+$('#persona').onchange=e=>{S.persona=e.target.value;S.editing=false;render()};render();
+</script></body></html>
