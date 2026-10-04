@@ -1056,13 +1056,13 @@ main { position: relative; z-index: 2; }
 }
 .hero__frame {
   position: relative; z-index: 1;
-  display: inline-flex; flex-direction: column; gap: .6rem;
-  background: var(--surface);
-  border: 1px solid var(--border-2);
-  padding: .6rem .6rem .8rem;
-  box-shadow: var(--shadow);
+  display: inline-flex; flex-direction: column; align-items: center; gap: .7rem;
 }
-.hero__frame .illus { width: clamp(220px, 90%, 380px); filter: none; }
+.hero__frame .illus { width: clamp(240px, 90%, 380px); }
+.illus--circle {
+  clip-path: circle();
+  filter: drop-shadow(0 14px 30px rgba(49, 38, 20, .22));
+}
 .hero__frame figcaption {
   font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
   color: var(--muted); text-align: center;
