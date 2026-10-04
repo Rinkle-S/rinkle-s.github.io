@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights to Presentation | Rinkle Sebastian</title>
+  <meta name="description" content="Case study: a faster path from a portfolio report to a presentable deck, with AI-generated insights and a rerun step that flags outdated slides." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/dancing-script-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#fbf8f3" />
+  <script>
+    document.documentElement.classList.add("js");
+    try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="masthead-strip">
+    <span>Portfolio &middot; Vol. 01</span>
+  </div>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand"><span class="nav__brand-name">Rinkle Sebastian</span></a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="index.html#work" class="is-active">Work</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="nav__social nav__social--mail" href="mailto:rinklesebastian12@gmail.com" aria-label="Email me" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5" width="18.4" height="14" rx="2.6"/><path d="M4 7.4l8 5.7 8-5.7"/></svg>
+        </a>
+        <a class="nav__social nav__social--github" href="https://github.com/Rinkle-S" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.97-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.15 0 1.55-.01 2.81-.01 3.19 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a class="nav__social nav__social--linkedin" href="https://linkedin.com/in/rinkle-sebastian" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+        </a>
+        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z"/></svg>
+        </button>
+        <button class="icon-btn nav__burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap cs">
+    <!-- ===== Intro ===== -->
+    <section class="cs-hero">
+      <a class="cs-back" href="index.html#work">← All work</a>
+      <p class="cs-eyebrow">Case study &middot; Reporting &middot; Fintech B2B</p>
+      <h1 class="hero__title">Insights to <span class="hl">Presentation</span></h1>
+      <p class="hero__sub">
+        A faster path from a portfolio report to a deck someone can actually present, without
+        starting from a blank slide.
+      </p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product owner, end to end</dd></div>
+        <div><dt>Context</dt><dd>Corridor Platforms</dd></div>
+        <div><dt>Built</dt><dd>AI-generated insights &middot; Slide editor &middot; Rerun to flag stale insights</dd></div>
+      </dl>
+      <p class="read-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        4 min read
+      </p>
+    </section>
+
+    <!-- ===== Summary ===== -->
+    <section class="cs-block cs-block--tight">
+      <div class="cs-brief">
+        <div class="cs-card">
+          <h3>The problem</h3>
+          <p>Portfolio reviews end in a deck. Getting from "here's what changed this month" to something a committee can sit through usually means a few hours of someone copying numbers into slides by hand.</p>
+        </div>
+        <div class="cs-card">
+          <h3>The approach</h3>
+          <p>Generate an insight on a report, turn it into a draft presentation, edit it like a normal slide, and present straight from the same screen. Rerunning the analysis flags anything that's gone stale.</p>
+        </div>
+        <div class="cs-card">
+          <h3>How we judged it</h3>
+          <p>Is the resulting deck something someone would actually present as is, and does rerunning genuinely catch numbers that have moved on?</p>
+        </div>
+      </div>
+      <p class="cs-note cs-note--flag">
+        Real client details and data are confidential. The prototype below uses a fictional
+        bank, Northwind Decisions, and its AI text is scripted rather than live.
+      </p>
+    </section>
+
+    <!-- ===== Framing ===== -->
+    <section class="cs-block" id="framing">
+      <p class="cs-eyebrow">Framing</p>
+      <h2 class="section__title">Generating the slide is the easy half</h2>
+      <div class="cs-prose">
+        <p>
+          Turning a report into a first-draft slide is the part that looks impressive in a
+          demo. It's also the part that was straightforward to get working. The harder,
+          less flashy problem showed up after: once that slide exists, it starts going out
+          of date the moment the underlying report changes, and nothing told anyone that had
+          happened.
+        </p>
+        <p>
+          So the feature isn't really "generate a slide." It's <strong>"generate a slide,
+          and tell me the moment it stops being true."</strong> Rerun became the part I
+          cared about most, not the generation itself.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Prototype ===== -->
+    <section class="cs-block" id="prototype">
+      <p class="cs-eyebrow">Clickable prototype</p>
+      <h2 class="section__title">Build a deck, then make it stale on purpose</h2>
+      <p class="cs-lead">
+        Generate an insight on a report, build the presentation, edit a slide, present it,
+        then hit rerun to watch outdated insights get flagged.
+      </p>
+      <div class="cs-screen">
+        <div class="cs-screen__bar">
+          <span class="cs-screen__dot"></span><span class="cs-screen__dot"></span><span class="cs-screen__dot"></span>
+          <span class="cs-screen__url">northwind-decisions.app/portfolio</span>
+        </div>
+        <iframe src="prototypes/insights-to-presentation.html" title="Insights to presentation prototype" loading="lazy"></iframe>
+      </div>
+      <p class="cs-note">
+        Works best on a larger screen.
+        <a href="prototypes/insights-to-presentation.html" target="_blank" rel="noopener" class="inline-link">Open the prototype in a new tab</a> for the full experience.
+      </p>
+    </section>
+
+    <!-- ===== Outcome ===== -->
+    <section class="cs-block" id="outcome">
+      <p class="cs-eyebrow">Outcome</p>
+      <h2 class="section__title">A prototype worth timing against the old way</h2>
+      <div class="cs-prose">
+        <p>
+          This is scoped and prototyped, not a confirmed, shipped feature. The AI-generated
+          text is scripted in the prototype so I could test the flow end to end (generate,
+          edit, present, rerun) before anyone builds the real model behind it.
+        </p>
+      </div>
+      <h3 class="cs-h3">What I'd want to validate next</h3>
+      <ul class="cs-list">
+        <li><strong>Whether editing a draft is actually faster than starting fresh.</strong> A generated slide that still needs heavy editing might not save anyone real time. Worth timing both ways before calling it a win.</li>
+        <li><strong>How noisy the rerun flag gets.</strong> If nearly every slide gets flagged stale after a routine data refresh, people will learn to ignore it, which defeats the point.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Takeaway ===== -->
+    <section class="cs-block" id="takeaway">
+      <p class="cs-eyebrow">Takeaway</p>
+      <h2 class="section__title">Staleness, not generation, was the insight</h2>
+      <div class="cs-prose">
+        <p>
+          Everyone wants the AI-writes-my-slide feature. Fewer people ask what happens to
+          that slide a week later, after the report underneath it has moved. That gap, a
+          deck that quietly stops being true, is the more interesting product problem, and
+          it's the one this prototype actually tries to solve.
+        </p>
+      </div>
+      <div class="hero__cta">
+        <a href="agent-connectors.html" class="btn btn--ghost">Back to the start: Agent Connectors &rarr;</a>
+        <a href="index.html#work" class="btn btn--quiet">All work</a>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section--contact">
+      <div class="contact__card">
+        <h2 class="section__title">Want the longer version?</h2>
+        <p class="contact__lead">
+          Happy to talk through the rerun logic, or anything else on reporting and fintech.
+        </p>
+        <div class="contact__links">
+          <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--primary">Email me</a>
+          <a href="https://linkedin.com/in/rinkle-sebastian" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="colophon">&copy; 2026, written, edited and shipped by Rinkle Sebastian. Illustration by Twinkle Sebastian.</p>
+      <div class="footer__links">
+        <a href="index.html#work">Work</a>
+        <a href="resume.html">Resume</a>
+        <a href="mailto:rinklesebastian12@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
