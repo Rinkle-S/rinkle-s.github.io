@@ -141,19 +141,19 @@
     <!-- ===== Outcome ===== -->
     <section class="cs-block" id="outcome">
       <p class="cs-eyebrow">Outcome</p>
-      <h2 class="section__title">A prototype, deliberately narrow</h2>
+      <h2 class="section__title">Built, deliberately narrow</h2>
       <div class="cs-prose">
         <p>
-          This is scoped and prototyped, not a confirmed, shipped feature. The responses are
-          scripted so I could test the shape of the conversation (what it answers, what it
-          deflects, what it refuses) before anyone commits engineering time to wiring it up
-          to the real platform.
+          The assistant is connected to the platform over MCP and answers real questions
+          about real models and data. Its responses are scripted in the walkthrough above so
+          I could show the shape of the conversation publicly: what it answers, what it
+          deflects, and what it refuses, without exposing an actual bank's models or data.
         </p>
       </div>
-      <h3 class="cs-h3">What I'd want to validate next</h3>
+      <h3 class="cs-h3">What I'd take further</h3>
       <ul class="cs-list">
-        <li><strong>Which refusals are worth turning into real features.</strong> "Approve this for me" is correctly out of scope today. Some of the others might be worth building properly instead of declining forever.</li>
-        <li><strong>Whether server instructions are enough.</strong> Teaching it a bank's vocabulary through a short instruction block is simple, but it's untested against a genuinely large, messy glossary.</li>
+        <li><strong>Which refusals are worth turning into real features.</strong> "Approve this for me" should stay out of scope. Some of the others are more borderline and worth building properly instead of declining forever.</li>
+        <li><strong>How far server instructions scale.</strong> Teaching it a bank's vocabulary through a short instruction block works well for a handful of terms. Whether it holds up against a genuinely large, messy glossary is the open question.</li>
       </ul>
     </section>
 

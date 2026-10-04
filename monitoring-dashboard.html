@@ -138,20 +138,21 @@
     <!-- ===== Outcome ===== -->
     <section class="cs-block" id="outcome">
       <p class="cs-eyebrow">Outcome</p>
-      <h2 class="section__title">What shipped, and what I'd still test</h2>
+      <h2 class="section__title">Live, and tracking 380+ models</h2>
       <div class="cs-prose">
         <p>
-          The dashboard is live, tracking <strong>380+ models in production</strong> for the
-          bank it was built for. The configurability layer shown in the prototype above
-          (editable layout, data logic, change history) is the next iteration, scoped and
-          designed, and shown here as a working click-through rather than a confirmed,
-          shipped feature.
+          The dashboard shipped and is in production, tracking <strong>380+ models</strong>
+          for the bank it was built for. Admins use it to add fields and adjust the logic
+          behind a metric themselves, with every change validated and logged. Analysts work
+          from the same screen as a clean, read-only view. The walkthrough above is a
+          recreation of the real thing, rebuilt against a fictional bank so I could show it
+          publicly.
         </p>
       </div>
-      <h3 class="cs-h3">What I'd want to validate next</h3>
+      <h3 class="cs-h3">What I'd take further</h3>
       <ul class="cs-list">
-        <li><strong>Whether Admins actually use the data logic editor.</strong> Letting them touch logic is powerful, but if it still routes through a conversation with us first, the feature isn't earning its complexity.</li>
-        <li><strong>How much validation is enough.</strong> Right now it blocks obviously broken changes. The harder case is a change that's valid syntax but wrong in a way the system can't detect.</li>
+        <li><strong>Usage of the data logic editor.</strong> It's used, but less than the layout editor. Worth understanding whether that's because Admins trust it less, or because most metrics just don't need changing that often.</li>
+        <li><strong>Validation that catches intent, not just syntax.</strong> It stops obviously broken changes today. The harder case is a change that's valid but wrong in a way the system can't detect on its own.</li>
       </ul>
     </section>
 
