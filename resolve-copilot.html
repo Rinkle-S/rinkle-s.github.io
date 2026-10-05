@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resolve Copilot | Rinkle Sebastian</title>
+  <meta name="description" content="Case study: a RAG-powered copilot that drafts cited replies for support agents from a company's own docs, with a PRD, architecture and a clickable prototype." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/dancing-script-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#fbf8f3" />
+  <script>
+    document.documentElement.classList.add("js");
+    try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="masthead-strip">
+    <span>Portfolio &middot; Vol. 01</span>
+  </div>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand"><span class="nav__brand-name">Rinkle Sebastian</span></a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="index.html#work" class="is-active">Work</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="nav__social nav__social--mail" href="mailto:rinklesebastian12@gmail.com" aria-label="Email me" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5" width="18.4" height="14" rx="2.6"/><path d="M4 7.4l8 5.7 8-5.7"/></svg>
+        </a>
+        <a class="nav__social nav__social--github" href="https://github.com/Rinkle-S" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.97-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.15 0 1.55-.01 2.81-.01 3.19 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a class="nav__social nav__social--linkedin" href="https://linkedin.com/in/rinkle-sebastian" target="_blank" rel="noopener" aria-label="LinkedIn profile" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+        </a>
+        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z"/></svg>
+        </button>
+        <button class="icon-btn nav__burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap cs">
+    <!-- ===== Intro ===== -->
+    <section class="cs-hero">
+      <a class="cs-back" href="index.html#work">← All work</a>
+      <p class="cs-eyebrow">Course project &middot; RAG &middot; Customer support</p>
+      <h1 class="hero__title">Resolve <span class="hl">Copilot</span></h1>
+      <p class="hero__sub">
+        A RAG-powered copilot that drafts cited replies for support agents from a company's
+        own docs, so answers are faster, consistent, and checkable before they go out.
+      </p>
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Solo, PRD to prototype</dd></div>
+        <div><dt>Context</dt><dd>AI Product Management course, HelloPM</dd></div>
+        <div><dt>Built</dt><dd>RAG architecture &amp; PRD &middot; Clickable prototype</dd></div>
+      </dl>
+      <p class="read-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        8 min read
+      </p>
+    </section>
+
+    <!-- ===== Summary ===== -->
+    <section class="cs-block cs-block--tight">
+      <div class="cs-brief">
+        <div class="cs-card">
+          <h3>The problem</h3>
+          <p>Support agents spend most of their time on questions the company has already answered somewhere, finding the right doc, checking it is current, and retyping the same reply.</p>
+        </div>
+        <div class="cs-card">
+          <h3>The approach</h3>
+          <p>Retrieval-augmented generation over the company's own docs, policies and past tickets, so every draft reply cites the exact passage it came from.</p>
+        </div>
+        <div class="cs-card">
+          <h3>How I judged it</h3>
+          <p>Given a real support ticket, does the draft actually match what the docs say, and does the tool say "I don't know" instead of guessing when they don't?</p>
+        </div>
+      </div>
+      <p class="cs-note cs-note--flag">
+        This is a PRD and prototype from an AI product management course, not something built
+        or shipped at a company. The prototype is a generic mock support tool, not a real
+        product's interface, built in Claude Design from the brief below.
+      </p>
+    </section>
+
+    <!-- ===== Framing ===== -->
+    <section class="cs-block" id="framing">
+      <p class="cs-eyebrow">Framing</p>
+      <h2 class="section__title">Why RAG, and not a bigger prompt or a fine-tuned model</h2>
+      <div class="cs-prose">
+        <p>
+          A general model has never seen a company's internal docs, so without help it would
+          guess, and the full documentation is too large to paste into every prompt anyway.
+          Fine-tuning solves the knowledge problem for a moment, but support docs change with
+          every release, so the model would need retraining constantly, and a fine-tuned
+          model still can't show where an answer came from.
+        </p>
+        <p>
+          RAG fits both gaps at once. It looks up the current docs when the ticket comes in,
+          so answers stay current without retraining anything, and it returns the exact
+          source alongside the answer. <strong>That source is what makes the whole product
+          work: an agent is required to check a draft before sending it, and a citation is
+          what makes checking fast instead of a second research task.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Architecture ===== -->
+    <section class="cs-block" id="architecture">
+      <p class="cs-eyebrow">How it fits together</p>
+      <h2 class="section__title">One pipeline, from documents to a cited reply</h2>
+      <p class="cs-lead">
+        Documents are parsed, chunked by type (small for dense technical text, larger for
+        narrative help articles) and embedded with a multimodal model, since support docs are
+        full of screenshots and tables, not just text. A query gets rewritten into several
+        variants, searched with both semantic and keyword matching, then re-ranked down to
+        the best few chunks before the model ever sees them.
+      </p>
+
+      <div class="arch">
+        <img src="assets/resolve-copilot-architecture.png" alt="Architecture diagram of Resolve Copilot: documents flow through extraction, pre-processing, chunking, embedding and a vector database, then a user query flows through query pre-processing, hybrid retrieval, re-ranking, context and prompt assembly, the LLM, output guardrails and a cited response, with customer context feeding the prompt and flags from the agent routing back to re-index the source." loading="lazy" />
+      </div>
+
+      <h3 class="cs-h3">What happens when retrieval doesn't find a clean answer</h3>
+      <div class="cs-prose">
+        <p>
+          If every retrieved chunk scores low, Resolve Copilot says so and shows what it did
+          find instead of answering from the model's memory. If two kept chunks disagree, it
+          shows both with a warning rather than quietly picking one. Neither threshold is a
+          guess: both get tuned against a held-out set of questions during testing, not left
+          to the model to decide case by case.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Decisions ===== -->
+    <section class="cs-block" id="decisions">
+      <p class="cs-eyebrow">The decisions that mattered</p>
+      <h2 class="section__title">Three calls I'd make again</h2>
+
+      <h3 class="cs-h3">1 &middot; Citations are the whole point, not a nice-to-have</h3>
+      <div class="cs-prose">
+        <p>
+          It would have been easy to treat citations as a UI detail: a small link under the
+          draft. Instead they're the reason the product is usable at all. An agent is never
+          allowed to send a reply unedited and unchecked, so the real design question was how
+          to make checking take seconds instead of minutes: the supporting phrase is
+          highlighted in the source, and the source opens in a side panel without leaving the
+          ticket. Verification had to be as fast as the draft itself, or agents would stop
+          trusting the drafts and stop using the tool.
+        </p>
+      </div>
+
+      <h3 class="cs-h3">2 &middot; Saying "I don't know" is a feature, not a failure</h3>
+      <div class="cs-prose">
+        <p>
+          The tempting version of this product always answers. The useful version knows when
+          to stop. When no chunk scores well enough, Resolve Copilot writes no draft at all
+          and shows the most relevant articles instead, so the agent writes the reply
+          themselves with the right references in front of them. <strong>Refusing confidently
+          is harder to design than answering confidently, and it matters more:</strong> a
+          wrong answer with a citation attached is more dangerous than no answer, because the
+          citation makes it look checked.
+        </p>
+      </div>
+
+      <h3 class="cs-h3">3 &middot; The agent decides, every single time</h3>
+      <div class="cs-prose">
+        <p>
+          Resolve Copilot never replies to a customer and never escalates a ticket on its
+          own. It drafts, it flags when something needs a human decision like a refund, and
+          it names the team to route to, but sending and deciding always stay with the agent.
+          That boundary shaped the permission model too: the copilot only searches documents
+          the agent is already allowed to see, checked before retrieval and checked again
+          after, so two agents can get different results for the same question and that's
+          correct, not a bug.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Prototype ===== -->
+    <section class="cs-block" id="prototype">
+      <p class="cs-eyebrow">Clickable prototype</p>
+      <h2 class="section__title">Four scenarios, run in Claude Design</h2>
+      <p class="cs-lead">
+        I built the brief into a mock support tool (ticket list, conversation, reply box and
+        the copilot's suggestion panel) and ran the four behaviours the PRD specifies: a
+        confident cited draft, an honest "no exact answer," a sources-conflict warning, and a
+        draft flagged out of date mid-review.
+      </p>
+      <div class="cs-shots">
+        <figure class="cs-shot">
+          <img src="assets/resolve-copilot-happy-path.png" alt="Resolve Copilot showing a high-confidence cited draft reply for sharing a page with a guest, with numbered citations and a sources panel on the right." loading="lazy" />
+          <figcaption><strong>Happy path.</strong> A clear answer in the docs becomes a cited draft, high confidence, ready to check and send.</figcaption>
+        </figure>
+        <figure class="cs-shot">
+          <img src="assets/resolve-copilot-no-answer.png" alt="Resolve Copilot showing a low-confidence no-draft response for a CRM integration question, listing the most relevant articles instead of writing a reply." loading="lazy" />
+          <figcaption><strong>No exact answer.</strong> Nothing in the docs answers the question, so it writes no draft and lists what's actually relevant.</figcaption>
+        </figure>
+        <figure class="cs-shot">
+          <img src="assets/resolve-copilot-conflict.png" alt="Resolve Copilot showing a low-confidence draft with a warning that sources conflict or may be outdated, with both conflicting sources listed." loading="lazy" />
+          <figcaption><strong>Sources conflict.</strong> Two documents disagree on the refund window, so it still drafts, but warns and shows both.</figcaption>
+        </figure>
+        <figure class="cs-shot">
+          <img src="assets/resolve-copilot-outdated.jpg" alt="Resolve Copilot showing a warning that the current suggestion may be out of date after the customer sent a new message mid-review." loading="lazy" />
+          <figcaption><strong>Out of date.</strong> The customer sends a new message while the agent is still reviewing, so the draft gets flagged stale.</figcaption>
+        </figure>
+      </div>
+      <p class="cs-note">
+        Retrieval is simulated in the prototype: it runs on a small set of mock Notion-style
+        help articles, not a live search.
+      </p>
+    </section>
+
+    <!-- ===== What matched ===== -->
+    <section class="cs-block" id="reality-check">
+      <p class="cs-eyebrow">Spec vs. reality</p>
+      <h2 class="section__title">What the build got right, and what I changed my mind on</h2>
+      <div class="cs-prose">
+        <p>
+          The layout, the citations, the confidence tint and all three scenario behaviours
+          matched the brief. Two things didn't, and both were worth noticing rather than
+          forcing:
+        </p>
+      </div>
+      <ul class="cs-list">
+        <li><strong>The sources panel shows one source at a time, behind tabs.</strong> The brief asked for both sources in one scrollable list. Seeing the build made the tabbed version feel reasonable enough that I changed the spec to match it instead of fighting the build.</li>
+        <li><strong>The panel stays empty until a citation is clicked, even in the conflict case.</strong> That one I'd still fix: when two sources disagree, the agent should see both laid out immediately, not discover the second one by clicking.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Outcome ===== -->
+    <section class="cs-block" id="outcome">
+      <p class="cs-eyebrow">Evaluation &amp; cost</p>
+      <h2 class="section__title">How I'd know if it actually works</h2>
+      <div class="cs-prose">
+        <p>
+          Two metrics carry most of the weight: precision@K on retrieval (did it find the
+          right chunks) and faithfulness on generation (is the answer actually supported by
+          what it found). Business impact rides alongside them: acceptance rate, first
+          response time, and resolution time, none of which mean anything if the first two
+          are wrong.
+        </p>
+        <p>
+          On cost, a query averaging around 4,250 input tokens and 550 output tokens on
+          Claude Sonnet 5.5 comes to about <strong>$0.014 per query</strong>, which works out
+          to roughly <strong>$6 per agent per month</strong> at 440 tickets a month. Cheap
+          enough that the real constraint on this product was never going to be cost, it was
+          always going to be trust.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Takeaway ===== -->
+    <section class="cs-block" id="takeaway">
+      <p class="cs-eyebrow">Takeaway</p>
+      <h2 class="section__title">A RAG product is a trust product first</h2>
+      <div class="cs-prose">
+        <p>
+          It's tempting to treat retrieval and generation as the hard parts of a RAG product,
+          the parts worth the most design time. They're not, or at least they're not the only
+          ones. The decisions that actually shaped Resolve Copilot were about confidence:
+          when to answer, when to say nothing, when to show a warning instead of a clean
+          draft, and when to hand the whole thing to a person. Get the retrieval right and
+          the model will tell you the truth. Get the confidence decisions right and people
+          will actually believe it.
+        </p>
+      </div>
+      <div class="hero__cta">
+        <a href="agent-connectors.html" class="btn btn--ghost">Back to the start: Agent Connectors &rarr;</a>
+        <a href="index.html#work" class="btn btn--quiet">All work</a>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section--contact">
+      <div class="contact__card">
+        <h2 class="section__title">Want the longer version?</h2>
+        <p class="contact__lead">
+          Happy to walk through the full PRD, or anything else on RAG and AI product work.
+        </p>
+        <div class="contact__links">
+          <a href="mailto:rinklesebastian12@gmail.com" class="btn btn--primary">Email me</a>
+          <a href="https://linkedin.com/in/rinkle-sebastian" class="btn btn--ghost" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="colophon">&copy; 2026, written, edited and shipped by Rinkle Sebastian. Illustration by Twinkle Sebastian.</p>
+      <div class="footer__links">
+        <a href="index.html#work">Work</a>
+        <a href="resume.html">Resume</a>
+        <a href="mailto:rinklesebastian12@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

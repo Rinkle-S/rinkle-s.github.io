@@ -916,6 +916,7 @@ main { position: relative; z-index: 2; }
   box-shadow: var(--shadow-sm);
 }
 .arch svg { min-width: 34rem; width: 100%; height: auto; }
+.arch img { width: 100%; height: auto; display: block; border-radius: 8px; }
 .arch .box { fill: var(--surface-2); stroke: var(--border-2); stroke-width: 1.5; }
 .arch .box--ink { fill: var(--ink-soft); stroke: var(--ink); }
 .arch .box--gold { fill: var(--gold-soft); stroke: var(--gold); }
@@ -939,6 +940,29 @@ main { position: relative; z-index: 2; }
 .arch .line { stroke: var(--border-2); stroke-width: 1.75; fill: none; }
 .arch .line--dash { stroke-dasharray: 4 4; }
 .arch .head { fill: var(--border-2); }
+
+/* Screenshot gallery: static prototype shots, 2-up on wider screens */
+.cs-shots {
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+@media (min-width: 760px) {
+  .cs-shots { grid-template-columns: 1fr 1fr; }
+}
+.cs-shot {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.cs-shot img { width: 100%; height: auto; display: block; }
+.cs-shot figcaption {
+  padding: .75rem 1rem;
+  font-size: .85rem; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.cs-shot figcaption strong { color: var(--text); }
 
 /* ==========================================================================
    Reveal on scroll
