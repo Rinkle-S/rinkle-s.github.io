@@ -66,8 +66,12 @@
       </dl>
       <p class="read-time">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-        8 min read
+        11 min read
       </p>
+      <figure class="cs-shot">
+        <img src="assets/resolve-copilot-happy-path.png" alt="Resolve Copilot showing a high-confidence cited draft reply for sharing a page with a guest, with numbered citations and a sources panel on the right." loading="lazy" class="lightbox-trigger" />
+        <figcaption class="cs-shot__cap">The happy path: a cited draft, ready to check and send. Click to enlarge.</figcaption>
+      </figure>
     </section>
 
     <!-- ===== Summary ===== -->
@@ -128,7 +132,7 @@
       </p>
 
       <div class="arch">
-        <img src="assets/resolve-copilot-architecture.png" alt="Architecture diagram of Resolve Copilot: documents flow through extraction, pre-processing, chunking, embedding and a vector database, then a user query flows through query pre-processing, hybrid retrieval, re-ranking, context and prompt assembly, the LLM, output guardrails and a cited response, with customer context feeding the prompt and flags from the agent routing back to re-index the source." loading="lazy" />
+        <img src="assets/resolve-copilot-architecture.png" alt="Architecture diagram of Resolve Copilot: documents flow through extraction, pre-processing, chunking, embedding and a vector database, then a user query flows through query pre-processing, hybrid retrieval, re-ranking, context and prompt assembly, the LLM, output guardrails and a cited response, with customer context feeding the prompt and flags from the agent routing back to re-index the source." loading="lazy" class="lightbox-trigger" />
       </div>
 
       <h3 class="cs-h3">What happens when retrieval doesn't find a clean answer</h3>
@@ -140,6 +144,56 @@
           guess: both get tuned against a held-out set of questions during testing, not left
           to the model to decide case by case.
         </p>
+      </div>
+    </section>
+
+    <!-- ===== Failure modes ===== -->
+    <section class="cs-block" id="failure-modes">
+      <p class="cs-eyebrow">Failure modes</p>
+      <h2 class="section__title">Six ways this breaks, and how I'd catch each one</h2>
+      <p class="cs-lead">
+        A RAG product fails quietly most of the time: a confident, cited, wrong answer looks
+        identical to a confident, cited, right one until someone checks. Each row below is a
+        way that happens, and the detection step that catches it before an agent sees it.
+      </p>
+      <div class="cs-table">
+        <table>
+          <thead>
+            <tr><th>What breaks it</th><th>How I'd detect it</th><th>How I'd fix it</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bad source data: outdated docs, two that disagree, or a badly scanned PDF.</td>
+              <td>Audit documents on upload for scan quality, missing text and duplicates. Flag docs that answer the same question differently.</td>
+              <td>Give every doc an owner and a version date so retrieval prefers current ones. Show both sources instead of quietly picking one.</td>
+            </tr>
+            <tr>
+              <td>Wrong chunking: one idea split across two chunks, or a table cut in half.</td>
+              <td>Track precision@5 after every chunking change. Spot-check stored chunks for broken tables.</td>
+              <td>Split by topic with overlap, keep tables whole as Markdown, and attach the title and heading to every chunk.</td>
+            </tr>
+            <tr>
+              <td>Retrieval misses: the right chunk exists but doesn't come back, often on vague follow-ups.</td>
+              <td>Every eval question has a known source chunk. Check it lands in the top 20, then the top 5.</td>
+              <td>Rewrite the query into several variants, and let hybrid search catch exact terms a pure semantic match would miss.</td>
+            </tr>
+            <tr>
+              <td>The model hallucinates anyway, even with good chunks in front of it.</td>
+              <td>Replay a golden set of unanswerable questions before every release and check it says so.</td>
+              <td>The prompt requires a citation for every claim and says "I don't know" is an acceptable answer.</td>
+            </tr>
+            <tr>
+              <td>Knowledge goes stale: the product changes but the index doesn't catch up.</td>
+              <td>Store a last-modified date per chunk. Flag fast-changing topics not updated in 180 days.</td>
+              <td>Any product or policy change triggers a re-index within 24 hours. Old sources get a verify-before-sending warning.</td>
+            </tr>
+            <tr>
+              <td>Agents misuse it: one-word queries, pasted personal data, or just not trusting it.</td>
+              <td>Count short queries and pasted personal data from the traces. Track how often agents actually open a source.</td>
+              <td>Ask a short follow-up on a vague query, mask personal data in logs, and make the supporting phrase easy to check in one click.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -198,22 +252,22 @@
         confident cited draft, an honest "no exact answer," a sources-conflict warning, and a
         draft flagged out of date mid-review.
       </p>
-      <div class="cs-shots">
-        <figure class="cs-shot">
-          <img src="assets/resolve-copilot-happy-path.png" alt="Resolve Copilot showing a high-confidence cited draft reply for sharing a page with a guest, with numbered citations and a sources panel on the right." loading="lazy" />
-          <figcaption><strong>Happy path.</strong> A clear answer in the docs becomes a cited draft, high confidence, ready to check and send.</figcaption>
+      <div class="cs-gallery">
+        <figure class="cs-gallery__item">
+          <img src="assets/resolve-copilot-happy-path.png" alt="Resolve Copilot showing a high-confidence cited draft reply for sharing a page with a guest, with numbered citations and a sources panel on the right." loading="lazy" class="lightbox-trigger" />
+          <figcaption><strong>Happy path.</strong> A clear answer in the docs becomes a cited draft, high confidence, ready to check and send. Click to enlarge.</figcaption>
         </figure>
-        <figure class="cs-shot">
-          <img src="assets/resolve-copilot-no-answer.png" alt="Resolve Copilot showing a low-confidence no-draft response for a CRM integration question, listing the most relevant articles instead of writing a reply." loading="lazy" />
-          <figcaption><strong>No exact answer.</strong> Nothing in the docs answers the question, so it writes no draft and lists what's actually relevant.</figcaption>
+        <figure class="cs-gallery__item">
+          <img src="assets/resolve-copilot-no-answer.png" alt="Resolve Copilot showing a low-confidence no-draft response for a CRM integration question, listing the most relevant articles instead of writing a reply." loading="lazy" class="lightbox-trigger" />
+          <figcaption><strong>No exact answer.</strong> Nothing in the docs answers the question, so it writes no draft and lists what's actually relevant. Click to enlarge.</figcaption>
         </figure>
-        <figure class="cs-shot">
-          <img src="assets/resolve-copilot-conflict.png" alt="Resolve Copilot showing a low-confidence draft with a warning that sources conflict or may be outdated, with both conflicting sources listed." loading="lazy" />
-          <figcaption><strong>Sources conflict.</strong> Two documents disagree on the refund window, so it still drafts, but warns and shows both.</figcaption>
+        <figure class="cs-gallery__item">
+          <img src="assets/resolve-copilot-conflict.png" alt="Resolve Copilot showing a low-confidence draft with a warning that sources conflict or may be outdated, with both conflicting sources listed." loading="lazy" class="lightbox-trigger" />
+          <figcaption><strong>Sources conflict.</strong> Two documents disagree on the refund window, so it still drafts, but warns and shows both. Click to enlarge.</figcaption>
         </figure>
-        <figure class="cs-shot">
-          <img src="assets/resolve-copilot-outdated.jpg" alt="Resolve Copilot showing a warning that the current suggestion may be out of date after the customer sent a new message mid-review." loading="lazy" />
-          <figcaption><strong>Out of date.</strong> The customer sends a new message while the agent is still reviewing, so the draft gets flagged stale.</figcaption>
+        <figure class="cs-gallery__item">
+          <img src="assets/resolve-copilot-outdated.jpg" alt="Resolve Copilot showing a warning that the current suggestion may be out of date after the customer sent a new message mid-review." loading="lazy" class="lightbox-trigger" />
+          <figcaption><strong>Out of date.</strong> The customer sends a new message while the agent is still reviewing, so the draft gets flagged stale. Click to enlarge.</figcaption>
         </figure>
       </div>
       <p class="cs-note">
@@ -258,6 +312,46 @@
           enough that the real constraint on this product was never going to be cost, it was
           always going to be trust.
         </p>
+      </div>
+    </section>
+
+    <!-- ===== Launch plan ===== -->
+    <section class="cs-block" id="launch">
+      <p class="cs-eyebrow">Rollout</p>
+      <h2 class="section__title">Four phases, each with a go or no-go number</h2>
+      <p class="cs-lead">
+        The plan moves to the next phase only when its number is met, not on a date. P1 and
+        P2 user stories (the escalation summary and self-service permissions) stay out of
+        scope until after general availability.
+      </p>
+      <div class="cs-table">
+        <table>
+          <thead>
+            <tr><th>Phase</th><th>Who, and what's tested</th><th>Go / no-go</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Internal alpha</td>
+              <td>Internal leads, QA and a few agents, weeks 1 to 2. Validates the core flow and checks for jailbreaks or PII leaks.</td>
+              <td>Retrieval precision above 85%, faithfulness above 90%, zero safety violations.</td>
+            </tr>
+            <tr>
+              <td>Closed beta</td>
+              <td>One support team, 5 to 8 agents, weeks 3 to 5. Real tickets: is it answering, are citations correct, when does it refuse.</td>
+              <td>Agents accept over 60% of drafts directly or with small edits. No factual errors. Feedback loop works.</td>
+            </tr>
+            <tr>
+              <td>Phased rollout</td>
+              <td>Remaining internal teams plus a few smaller clients, in stages. Load testing, multi-turn conversations, latency.</td>
+              <td>99%+ uptime, a suggestion in under 5 seconds, holds up at the largest team's query volume.</td>
+            </tr>
+            <tr>
+              <td>General availability</td>
+              <td>Open to all clients. Logging, retrieval quality and ROI monitored continuously.</td>
+              <td>Not applicable: this is the steady state, not a gate.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -307,6 +401,13 @@
       </div>
     </div>
   </footer>
+
+  <div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+    <button class="lightbox-overlay__close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img src="" alt="" id="lightbox-img" />
+  </div>
 
   <script src="script.js"></script>
 </body>

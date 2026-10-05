@@ -83,6 +83,28 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ---------- Lightbox: click a .lightbox-trigger image to view full screen ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  if (lightbox && lightboxImg) {
+    var closeLightbox = function () {
+      lightbox.classList.remove("is-open");
+      document.body.style.overflow = "";
+    };
+    document.querySelectorAll(".lightbox-trigger").forEach(function (img) {
+      img.addEventListener("click", function () {
+        lightboxImg.src = img.currentSrc || img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  }
+
   /* ---------- Reveal on scroll ---------- */
   var revealables = document.querySelectorAll(".reveal");
   if (!revealables.length) return;

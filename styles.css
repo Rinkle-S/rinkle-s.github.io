@@ -916,7 +916,7 @@ main { position: relative; z-index: 2; }
   box-shadow: var(--shadow-sm);
 }
 .arch svg { min-width: 34rem; width: 100%; height: auto; }
-.arch img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.arch img { width: 100%; height: auto; display: block; border-radius: 8px; cursor: zoom-in; }
 .arch .box { fill: var(--surface-2); stroke: var(--border-2); stroke-width: 1.5; }
 .arch .box--ink { fill: var(--ink-soft); stroke: var(--ink); }
 .arch .box--gold { fill: var(--gold-soft); stroke: var(--gold); }
@@ -941,28 +941,65 @@ main { position: relative; z-index: 2; }
 .arch .line--dash { stroke-dasharray: 4 4; }
 .arch .head { fill: var(--border-2); }
 
-/* Screenshot gallery: static prototype shots, 2-up on wider screens */
-.cs-shots {
-  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+/* Screenshot gallery: static prototype shots, large, one per row.
+   Named .cs-gallery (not .cs-shot) to avoid colliding with the single
+   cover-shot component above, which is deliberately narrow. Breaks out
+   of the narrow .cs reading column since screenshots need width that
+   prose doesn't. */
+.cs-gallery {
+  display: grid; grid-template-columns: 1fr; gap: 1.75rem;
   margin-top: 1.75rem;
+  width: 100%;
+  max-width: min(94vw, 980px);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
-@media (min-width: 760px) {
-  .cs-shots { grid-template-columns: 1fr 1fr; }
-}
-.cs-shot {
+.cs-gallery__item {
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
-.cs-shot img { width: 100%; height: auto; display: block; }
-.cs-shot figcaption {
-  padding: .75rem 1rem;
-  font-size: .85rem; color: var(--muted);
+.cs-gallery__item img {
+  width: 100%; height: auto; display: block;
+  cursor: zoom-in;
+  transition: opacity .2s var(--ease);
+}
+.cs-gallery__item img:hover { opacity: .92; }
+.cs-gallery__item figcaption {
+  padding: .85rem 1.1rem;
+  font-size: .88rem; color: var(--muted);
   border-top: 1px solid var(--border);
 }
-.cs-shot figcaption strong { color: var(--text); }
+.cs-gallery__item figcaption strong { color: var(--text); }
+
+/* Lightbox: click any .lightbox-trigger image to view it full screen */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1rem, 5vw, 3.5rem);
+  background: rgba(10, 8, 5, .88);
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s var(--ease);
+  cursor: zoom-out;
+}
+.lightbox-overlay.is-open { opacity: 1; pointer-events: auto; }
+.lightbox-overlay img {
+  max-width: 100%; max-height: 100%;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  cursor: default;
+}
+.lightbox-overlay__close {
+  position: absolute; top: clamp(.8rem, 3vw, 1.6rem); right: clamp(.8rem, 3vw, 1.6rem);
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .25);
+}
 
 /* ==========================================================================
    Reveal on scroll
